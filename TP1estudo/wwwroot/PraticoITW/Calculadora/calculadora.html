@@ -1,0 +1,32 @@
+<!doctype html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript test file</title>
+    <script src="myScript.js"></script>
+    <link href="file:///C:\Users\Afonso\OneDrive - Universidade de Aveiro\ITW\ITW2022\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+    <h2 class="border-bottom my-2 py-2">Calculadora</h2>
+    <form class="row">
+        <div class="col-3"><input class="form-control" type="text" id="op1" value="3" /></div>
+        <div class="col-2">
+            <select class="form-select" id ="op">
+                <option value="1">+ </option>
+                <option value="2">- </option>
+                <option value="3">/ </option>
+                <option value="4">* </option>
+                </select>
+        </div>
+        <div class="col-3"><input class="form-control" type="text" id="op2" value="2" /></div>
+        <div class="col-1">=</div>
+        <div class="col-3"><input class="form-control" type="text" id="res" value="" /></div>
+        <br />
+        <div class="col-12 mt-2">
+           <input class="btn btn-primary" type="button" onclick="calcular()" value="Calcular" />
+        </div>
+        </form>
+        </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with Cols</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row border mt-5 back">
+        <div class="col-12 col-md-8 border bg-primary">.col-12 .col-md-8</div>
+        <div class="col-6 col-md-4 border bg-danger">.col-6 .col-md-4</div>
+    </div>
+
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <div class="row border mt-5">
+        <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
+        <div class="col-6 col-md-4 border bg-primary">.col-6 .col-md-4</div>
+        <div class="col-6 col-md-4 border bg-danger">.col-6 .col-md-4</div>
+    </div>
+
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="row border mt-5">
+        <div class="col-6 border bg-primary">.col-6</div>
+        <div class="col-6 border bg-danger">.col-6</div>
+    </div>
+</body>
+
+</html>
