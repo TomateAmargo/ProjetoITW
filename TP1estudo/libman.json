@@ -14,11 +14,9 @@
       "library": "jquery@3.7.1",
       "destination": "wwwroot/lib/jquery/dist/"
     },
-
     {
       "library": "knockout@3.5.1",
       "destination": "wwwroot/lib/knockout/dist/"
     }
-
   ]
 }
