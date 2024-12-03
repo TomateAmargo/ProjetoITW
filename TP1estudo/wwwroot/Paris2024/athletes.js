@@ -59,6 +59,11 @@ var vm = function () {
             //self.SetFavourites();
         });
     };
+    self.viewDetails = function (athlete) {
+        // Redirect to the details page with the athlete's ID
+        window.location.href = `Athletes/Details/${athlete.Id}`;
+    };
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
