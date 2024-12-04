@@ -12,6 +12,8 @@
     <link href="../StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
+
+    <!-- Inclusão da Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
         <div class="container-lg">
             <a class="navbar-brand" href="../index.html" title="Paris 2024"><img src="../Images/Paris2024.png" height="25" /></a>
@@ -20,8 +22,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../athletes/athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="coaches.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
@@ -34,34 +36,35 @@
             </div>
         </div>
     </nav>
+
     <!-- Working Area -->
     <div class="container">
         <div class="border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
         </div>
-        <!-- ko if:athletes().length > 0 -->
+        <!-- ko if:coaches().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Coaches: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './coaches.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './coaches.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
                     <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
-                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './athletes.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './coaches.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a></li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './coaches.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './coaches.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -73,18 +76,14 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Birth Date</th>
-                    <th scope="col">Birth Place</th>
                     <th scope="col">Sex</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: athletes">
+            <tbody data-bind="foreach: coaches">
                 <tr>
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:BirthDate"></td>
-                    <td class="align-middle" data-bind="text:BirthPlace"></td>
                     <td class="align-middle" data-bind="text:Sex"></td>
                     <td class="text-end">
                         <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athleteDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
@@ -100,7 +99,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../images/Paris2024.png" height="30" /> Loading data...
+                        <img src="../../Images/Paris2024.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">
@@ -109,7 +108,8 @@
             </div>
         </div>
     </div>
-    <!-- End of Working Area -->
+
+    <!-- Inclusão do Footer -->
     <nav class="navbar fixed-bottom bg-body-tertiary border-top">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2024/25</div>
@@ -119,10 +119,11 @@
             </div>
         </div>
     </nav>
+
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="athletes.js"></script>
+    <script src="coaches.js"></script>
     <script src="../theme.js"></script>
 </body>
 </html>

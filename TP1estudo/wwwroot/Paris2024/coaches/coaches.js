@@ -4,10 +4,10 @@ var vm = function () {
     var self = this;
 
     // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
-    self.displayName = 'Paris2024 Athletes List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/coaches');
+    self.displayName = 'Paris2024 Coaches List';
     self.error = ko.observable('');
-    self.athletes = ko.observableArray([]);
+    self.coaches = ko.observableArray([]); // Correção aqui, de athletes para coaches
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -15,7 +15,7 @@ var vm = function () {
     self.hasNext = ko.observable(false);
     self.totalPages = ko.observable(0);
 
-    // Computed observables para paginação
+    // Computed observables
     self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
     self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
 
@@ -30,17 +30,18 @@ var vm = function () {
 
     // Função para ativar a página
     self.activate = function (id) {
-        console.log('CALL: getAthletes...');
+        console.log('CALL: getCoaches...');
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
+        showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.athletes(data.Athletes);
+            self.coaches(data.Coaches); // Populando lista de coaches
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAthletes);
+            self.totalRecords(data.TotalCoaches); // Corrigido de TotalAthletes para TotalCoaches
         });
     };
 
@@ -87,4 +88,3 @@ $(document).ready(function () {
     console.log("Document ready!");
     ko.applyBindings(new vm());
 });
-
