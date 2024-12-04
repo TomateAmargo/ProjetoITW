@@ -80,14 +80,25 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: athletes">
-                <tr>
-                    <td class="align-middle" data-bind="text:Id"></td>
-                    <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:BirthDate"></td>
-                    <td class="align-middle" data-bind="text:BirthPlace"></td>
-                    <td class="align-middle" data-bind="text:Sex"></td>
+                <tr 
+                    class="clickable-row" 
+                    data-bind="click: function() { window.location.href = 'athlete-detail.html?id=' + Id }"
+                    style="cursor: pointer;">
+                    <td class="align-middle" data-bind="text: Id"></td>
+                    <td class="align-middle" data-bind="text: Name"></td>
+                    <td class="align-middle" data-bind="text: BirthDate"></td>
+                    <td class="align-middle" data-bind="text: BirthPlace"></td>
+                    <td class="align-middle" data-bind="text: Sex"></td>
+                    <td class="align-middle text-center">
+                        <!-- Optional eye icon -->
+                        <a data-bind="attr: { href: 'athlete-detail.html?id=' + Id }" class="text-decoration-none">
+                            <i class="fa fa-eye text-primary" title="View Details"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
+            
+            
         </table>
     </div>
     <!-- Modal -->

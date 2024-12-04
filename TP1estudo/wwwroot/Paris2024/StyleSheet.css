@@ -37,3 +37,24 @@ main {
     line-height: 1.5;
     border-radius: 3px;
 }
+a.text-white {
+    color: var(--bs-link-color); /* Use Bootstrap's link variable */
+  }
+  
+  [data-bs-theme="light"] a.text-white {
+    color: #000 !important; /* Black or dark color for light mode */
+  }
+  
+  [data-bs-theme="dark"] a.text-white {
+    color: #fff !important; /* White color for dark mode */
+  }
+  .clickable-row {
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.clickable-row:hover {
+    background-color: #f8f9fa; /* Light gray background on hover */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Blue glow effect */
+    z-index: 1; /* Ensure the glow is above other elements */
+    position: relative; /* For z-index to work */
+}

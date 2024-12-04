@@ -1,90 +1,160 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2024/25 - Paris 2024 Torch Route</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="./lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/337969d222.js" crossorigin="anonymous"></script>
-    <link href="StyleSheet.css" rel="stylesheet" />
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
-        <div class="container-lg">
-            <a class="navbar-brand" href="index.html" title="Paris 2024"><img src="./Images/Paris2024.png" height="25" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+﻿    <!DOCTYPE html>
+    <html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ITW 2024/25 - Paris 2024 Torch Route</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+        <link href="./lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/337969d222.js" crossorigin="anonymous"></script>
+        <link href="StyleSheet.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
+            <div class="container-lg">
+                <a class="navbar-brand" href="index.html" title="Paris 2024"><img src="./Images/Paris2024.png" height="25" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes/athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
+                    </ul>
+                    <ul class="navbar-nav justify-content-end" id="bd-theme">
+                        <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
+                        <li class="navbar-text hstack"><div class="vr"></div></li>
+                        <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid"></div>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-block w-100" style="background: url('Images/banner1.png') center center; height: 600px; background-size: cover;" alt="First slide"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100" style="background: url('Images/banner2.png') center center; height: 600px; background-size: cover;" alt="Second slide"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100" style="background: url('Images/banner3.png') center center; height: 600px; background-size: cover;" alt="Third slide"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100" style="background: url('Images/banner4.png') center center; height: 600px; background-size: cover;" alt="Third slide"></div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes/athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
-                </ul>
-                <ul class="navbar-nav justify-content-end" id="bd-theme">
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
-                    <li class="navbar-text hstack"><div class="vr"></div></li>
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
-                </ul>
-            </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    </nav>
-    <div class="container-fluid"></div>
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-block w-100" style="background: url('Images/banner1.png') center center; height: 600px; background-size: cover;" alt="First slide"></div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-block w-100" style="background: url('Images/banner2.png') center center; height: 600px; background-size: cover;" alt="Second slide"></div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-block w-100" style="background: url('Images/banner3.png') center center; height: 600px; background-size: cover;" alt="Third slide"></div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-block w-100" style="background: url('Images/banner4.png') center center; height: 600px; background-size: cover;" alt="Third slide"></div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <div class="container-lg">
-        <h2 class="py-2 mb-2 border-bottom" id="gettingStartedTitle">Jogos Olímpicos de Verão de 2024</h2>
-        <p> Jogos Olímpicos de Verão de 2024, oficialmente denominados Jogos da XXXIII Olimpíada e comumente conhecidos como Paris 2024, foi um evento multiesportivo internacional realizado de 26 de julho (data da cerimônia de abertura) a 11 de agosto de 2024 na França, com Paris como principal cidade anfitriã e 16 outras cidades espalhadas pela França Metropolitana, além de uma subsede no Taiti — uma ilha dentro do país ultramarino francês e da coletividade ultramarina da Polinésia Francesa.</p>
-        <p> A cidade de Paris foi escolhida como sede na 131.ª Sessão do Comitê Olímpico Internacional (COI) em Lima, Peru, em 13 de setembro de 2017. Após múltiplas desistências que deixaram apenas Paris e Los Angeles na disputa, o COI aprovou um processo para defini-las como locais de realização dos Jogos de 2024 e 2028 respectivamente. Tendo anteriormente sediado os Jogos de 1900 e de 1924, Paris torna-se a segunda cidade, depois de Londres (que foi a anfitriã em 1908, 1948 e 2012), a sediar três vezes os Jogos Olímpicos de Verão. Paris 2024 também marca o centenário de Paris 1924, e estes Jogos Olímpicos são os sextos organizados pela França (três de verão e três de inverno), e os primeiros Jogos Olímpicos franceses desde os Jogos Olímpicos de Inverno de 1992 em Albertville. Em 2024 os Jogos Olímpicos de Verão retornam ao tradicional ciclo olímpico de quatro anos, já que os Jogos de 2020, em Tóquio, foram adiados em um ano devido à pandemia de COVID-19.</p>
-        <p> Os Jogos de 2024 contam com a estreia do breakdance como evento olímpico, e serão os últimos Jogos Olímpicos realizados durante a gestão do COI pelo presidente Thomas Bach. Os Jogos tinham a expectativa de serem os primeiros a contar com número idêntico de atletas entre homens e mulheres, mas após a lista final de inscritos os homens devem contar com uma quantidade superior de competidores. As Olimpíadas de Paris custaram cerca de 9 bilhões de euros.</p>
+        <div class="container-lg">
+            <h2 class="py-2 mb-2 border-bottom" id="gettingStartedTitle">Jogos Olímpicos de Verão de 2024</h2>
+            <p> Jogos Olímpicos de Verão de 2024, oficialmente denominados Jogos da XXXIII Olimpíada e comumente conhecidos como Paris 2024, foi um evento multiesportivo internacional realizado de 26 de julho (data da cerimônia de abertura) a 11 de agosto de 2024 na França, com Paris como principal cidade anfitriã e 16 outras cidades espalhadas pela França Metropolitana, além de uma subsede no Taiti — uma ilha dentro do país ultramarino francês e da coletividade ultramarina da Polinésia Francesa.</p>
+            <p> A cidade de Paris foi escolhida como sede na 131.ª Sessão do Comitê Olímpico Internacional (COI) em Lima, Peru, em 13 de setembro de 2017. Após múltiplas desistências que deixaram apenas Paris e Los Angeles na disputa, o COI aprovou um processo para defini-las como locais de realização dos Jogos de 2024 e 2028 respectivamente. Tendo anteriormente sediado os Jogos de 1900 e de 1924, Paris torna-se a segunda cidade, depois de Londres (que foi a anfitriã em 1908, 1948 e 2012), a sediar três vezes os Jogos Olímpicos de Verão. Paris 2024 também marca o centenário de Paris 1924, e estes Jogos Olímpicos são os sextos organizados pela França (três de verão e três de inverno), e os primeiros Jogos Olímpicos franceses desde os Jogos Olímpicos de Inverno de 1992 em Albertville. Em 2024 os Jogos Olímpicos de Verão retornam ao tradicional ciclo olímpico de quatro anos, já que os Jogos de 2020, em Tóquio, foram adiados em um ano devido à pandemia de COVID-19.</p>
+            <p> Os Jogos de 2024 contam com a estreia do breakdance como evento olímpico, e serão os últimos Jogos Olímpicos realizados durante a gestão do COI pelo presidente Thomas Bach. Os Jogos tinham a expectativa de serem os primeiros a contar com número idêntico de atletas entre homens e mulheres, mas após a lista final de inscritos os homens devem contar com uma quantidade superior de competidores. As Olimpíadas de Paris custaram cerca de 9 bilhões de euros.</p>
 
-        <a href="https://pt.wikipedia.org/wiki/Jogos_Ol%C3%ADmpicos_de_Ver%C3%A3o_de_2024" target="_blank" title="Ver mais">wikipedia</a>
-    </div>
-    <nav class="navbar fixed-bottom bg-body-tertiary border-top">
-        <div class="container small">
-            <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2024/25</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-            <div class="navbar-nav">
-                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
-            </div>
+            <a href="https://pt.wikipedia.org/wiki/Jogos_Ol%C3%ADmpicos_de_Ver%C3%A3o_de_2024" target="_blank" title="Ver mais">wikipedia</a>
         </div>
-    </nav>
-    <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./lib/jquery/dist/jquery.min.js"></script>
-    <script src="theme.js"></script>
-</body>
-</html>
+        <nav class="navbar fixed-bottom bg-body-tertiary border-top">
+            <div class="container small">
+                <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2024/25</div>
+                <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+                <div class="navbar-nav">
+                    <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+                </div>
+            </div>
+        </nav>
+        <!-- Remove the container if you want to extend the Footer to full width. -->
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-4"> <!-- Added proper margin spacing with `my-4` -->
+    <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">OUR WORLD</h5>
+                    <ul class="list-unstyled mb-4">
+                        <li><a href="#!" class="text-white">About us</a></li>
+                        <li><a href="#!" class="text-white">Collections</a></li>
+                        <li><a href="#!" class="text-white">Environmental philosophy</a></li>
+                        <li><a href="#!" class="text-white">Artist collaborations</a></li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Contáctos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#!" class="text-white">Telefone: +351911234567</a></li>
+                        <li><a href="#!" class="text-white">Size Guide</a></li>
+                        <li><a href="#!" class="text-white">Shipping Information</a></li>
+                        <li><a href="#!" class="text-white">Returns & Exchanges</a></li>
+                        <li><a href="#!" class="text-white">Payment</a></li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Careers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#!" class="text-white">Jobs</a></li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Sign up to our newsletter</h5>
+                    <div class="form-outline form-white mb-4">
+                        <input type="email" id="form5Example2" class="form-control" />
+                        <label class="form-label" for="form5Example2">Email address</label>
+                    </div>
+                    <button type="submit" class="btn btn-outline-white btn-block">Subscribe</button>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3 border-top border-white">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+<!-- End of .container -->
+
+    
+    </div>
+    <!-- End of .container -->
+        <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./lib/jquery/dist/jquery.min.js"></script>
+        <script src="theme.js"></script>
+    </body>
+    </html>
