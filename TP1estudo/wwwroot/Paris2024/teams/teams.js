@@ -51,7 +51,8 @@ var vm = function () {
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null,
             error: function (jqXHR, textStatus, errorThrown) {
-                console.error(`AJAX Call [${uri}] Fail: ${errorThrown}`);
+                console.error(`AJAX Call [${uri}] Fail:`, errorThrown);
+                hideLoading();
                 self.error(errorThrown);
             }
         });
@@ -61,7 +62,9 @@ var vm = function () {
     }
 
     function hideLoading() {
-        $("#myModal").modal('hide');
+        $('#myModal').on('shown.bs.modal', function (e) {
+            $("#myModal").modal('hide');
+        })
     }
 
     function getUrlParameter(sParam) {
@@ -74,7 +77,7 @@ var vm = function () {
     let page = getUrlParameter('page') || 1;
     self.activate(page);
     console.log("VM initialized!");
-};
+}
 
 $(document).ready(function () {
     ko.applyBindings(new vm());

@@ -68,7 +68,9 @@ var vm = function () {
     }
 
     function hideLoading() {
-        $("#myModal").modal('hide');
+        $('#myModal').on('shown.bs.modal', function (e) {
+            $("#myModal").modal('hide');
+        })
     }
 
     // Função para obter parâmetros da URL
