@@ -4,6 +4,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Torch_route');
+    self.error = ko.observable('');
     self.displayName = 'Paris 2024 Torch Route';
 
     self.records = ko.observableArray([]);
@@ -12,53 +13,45 @@ var vm = function () {
     self.activate = function (id) {
         console.log('CALL: getRoutes...');
         var composedUri = self.baseUri();
-
-        // Show loading modal before making the request
         showLoading();
-
-        // Make AJAX call to get the data
-        ajaxHelper(composedUri, 'GET')
-            .done(function (data) {
-                console.log(data);
-                self.records(data);  // Bind data to the observable array
-            })
-            .fail(function () {
-                alert('Failed to load routes.');  // Handle failure
-            })
-            .always(function () {
-                // Hide loading modal after the request completes (whether success or failure)
+        ajaxHelper(composedUri, 'GET').done(function (data) {
                 hideLoading();
+                console.log(data);
+                self.records(data);
             });
     };
 
+    function ajaxHelper(uri, method, data) {
+        self.error('');
+        return $.ajax({
+            type: method,
+            url: uri,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: data ? JSON.stringify(data) : null,
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(`AJAX Call [${uri}] Fail:`, errorThrown);
+                hideLoading();
+                self.error(errorThrown);
+            }
+        });
+    }
+
+    function showLoading() {
+        // Show the loading modal
+        $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
+    }
+    
+    function hideLoading() {
+        $('#myModal').on('shown.bs.modal', function (e) {
+            $("#myModal").modal('hide');
+        })
+    }
+
     //--- start .....
+    showLoading();
     self.activate(1);
     console.log("VM initialized!");
-}
-
-//--- Internal functions
-function ajaxHelper(uri, method, data) {
-    return $.ajax({
-        type: method,
-        url: uri,
-        dataType: 'json',
-        contentType: 'application/json',
-        data: data ? JSON.stringify(data) : null,
-        error: function (jqXHR, textStatus, errorThrown) {
-            // You can also show some error details here, if needed
-            console.error("AJAX Call Failed:", errorThrown);
-        }
-    });
-}
-
-function showLoading() {
-    // Show the loading modal
-    $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
-}
-
-function hideLoading() {
-    // Hide the loading modal once the operation is complete
-    $("#myModal").modal('hide');
 }
 
 1

@@ -40,7 +40,7 @@ var vm = function () {
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAthletes);
+            self.totalRecords(data.TotalAhletes);
         });
     };
 

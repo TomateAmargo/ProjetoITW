@@ -81,8 +81,8 @@ var vm = function () {
 
     // Inicialização
     showLoading();
-    const pg = getUrlParameter('page') || 1;
-    self.activate(pg);
+    const page = getUrlParameter('page') || 1;
+    self.activate(page);
     console.log("VM initialized!");
 };
 

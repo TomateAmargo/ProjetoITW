@@ -32,7 +32,9 @@ var vm = function () {
     self.activate = function (id) {
         console.log('CALL: getCountries...');
         let composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
+        showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
+            hideLoading();
             console.log(data);
             self.records(data.Teams);
             self.currentPage(data.CurrentPage);
@@ -82,6 +84,3 @@ var vm = function () {
 $(document).ready(function () {
     ko.applyBindings(new vm());
 });
-
-// Ajax Complete (Fallback para esconder modal)
-$(document).ajaxComplete(() => $("#myModal").modal('hide'));
