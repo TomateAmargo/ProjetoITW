@@ -35,9 +35,14 @@
         </div>
     </nav>
     <!-- Working Area -->
-    <div class="container">
-        <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+    <div class="container mt-4">
+        <div class="row border-bottom py-2 mb-2">
+            <h2 class="col-6" data-bind="text:displayName"></h2>
+            <div class="col-6" id="cover">
+                <div class="row" style="justify-content:end">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:35%" id="procura" name="procura" autocomplete="off">
+                </div>
+            </div>
         </div>
         <!-- ko if:athletes().length > 0 -->
         <div class="row small">
@@ -129,7 +134,57 @@
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="athletes.js"></script>
     <script src="../theme.js"></script>
+    <script>
+        $(document).ready(function () {
+    const api_url = "http://192.168.160.58/Paris2024/api/athletes/Search";
+
+    $("#procura").autocomplete({
+        minLength: 2,
+        source: function (request, response) {
+            $.ajax({
+                type: "GET",
+                url: api_url,
+                data: {
+                    q: request.term.toLowerCase()  // Usando o termo do autocomplete
+                },
+                success: function (data) {
+                    if (!data.length) {
+                        response([{
+                            label: 'Sem resultados',
+                            value: ''
+                        }]);
+                    } else {
+                        const results = $.map(data.slice(0, 10), function (athlete) {
+                            return {
+                                label: athlete.Name,  // Nome do atleta
+                                value: athlete.Id     // ID para redirecionamento
+                            };
+                        });
+                        response(results);
+                    }
+                },
+                error: function () {
+                    alert("Erro ao buscar atletas!");
+                }
+            });
+        },
+        select: function (event, ui) {
+            event.preventDefault();
+            if (ui.item.value) {
+                $("#procura").val(ui.item.label);
+                window.location.href = "./athlete-detail.html?id=" + ui.item.value;
+            }
+        },
+        focus: function (event, ui) {
+            event.preventDefault();
+            $("#procura").val(ui.item.label);
+        }
+    });
+});
+    </script>
 </body>
 </html>
