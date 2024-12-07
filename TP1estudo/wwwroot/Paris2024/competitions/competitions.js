@@ -1,18 +1,12 @@
 ﻿
 const translations = {
     en: {
-        id: "Id",
         name: "Name",
-        birth_date: "Birth Date",
-        birth_place: "Birth Place",
-        sex: "Sex"
+        sport_id: "Sport Id",
     },
     pt: {
-        id: "Id",
         name: "Nome",
-        birth_date: "Data de nascimento",
-        birth_place: "Nacionalidade",
-        sex: "Sexo"
+        sport_id: "Id do desporto",
     }
 };
 
@@ -22,11 +16,11 @@ var vm = function () {
     var self = this;
 
     // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/athletes');
-    self.displayName = 'Paris2024 Athletes List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Competitions');
+    self.displayName = 'Paris2024 Competitions List';
     self.currentLanguage = ko.observable('en');
     self.error = ko.observable('');
-    self.athletes = ko.observableArray([]);
+    self.competitions = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -34,7 +28,7 @@ var vm = function () {
     self.hasNext = ko.observable(false);
     self.totalPages = ko.observable(0);
 
-    // Computed observables para paginação
+    // Computed observables
     self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
     self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
 
@@ -62,17 +56,17 @@ var vm = function () {
 
     // Função para ativar a página
     self.activate = function (id) {
-        console.log('CALL: getAthletes...');
+        console.log('CALL: getCompetitions...');
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.athletes(data.Athletes);
+            self.competitions(data.Competitions);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAhletes);
+            self.totalRecords(data.TotalCompetitions);
         });
     };
 

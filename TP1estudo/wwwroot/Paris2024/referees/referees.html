@@ -54,29 +54,29 @@
                 </div>
             </div>
         </div>
-        <!-- ko if:athletes().length > 0 -->
+        <!-- ko if:referees().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Referees: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './referees.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './referees.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
                     <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
-                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './athletes.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './referees.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a></li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './referees.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './referees.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -89,15 +89,14 @@
                     <th scope="col" data-bind="text: getTranslation('id')"></th>
                     <th scope="col" data-bind="text: getTranslation('name')"></th>
                     <th scope="col" data-bind="text: getTranslation('birth_date')"></th>
-                    <th scope="col" data-bind="text: getTranslation('birth_place')"></th>
                     <th scope="col" data-bind="text: getTranslation('sex')"></th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: athletes">
+            <tbody data-bind="foreach: referees">
                 <tr 
                     class="clickable-row" 
-                    data-bind="click: function() { window.location.href = 'athlete-detail.html?id=' + Id }"
+                    data-bind="click: function() { window.location.href = 'referee-detail.html?id=' + Id }"
                     style="cursor: pointer;">
                     <td class="align-middle" data-bind="text: Id"></td>
                     <td class="align-middle" data-bind="text: Name"></td>
@@ -106,7 +105,7 @@
                     <td class="align-middle" data-bind="text: Sex"></td>
                     <td class="align-middle text-center">
                         <!-- Optional eye icon -->
-                        <a data-bind="attr: { href: 'athlete-detail.html?id=' + Id }" class="text-decoration-none">
+                        <a data-bind="attr: { href: 'referee-detail.html?id=' + Id }" class="text-decoration-none">
                             <i class="fa fa-eye text-primary" title="View Details"></i>
                         </a>
                     </td>
@@ -146,11 +145,11 @@
     <script src="../lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="athletes.js"></script>
+    <script src="referees.js"></script>
     <script src="../theme.js"></script>
     <script>
         $(document).ready(function () {
-    const api_url = "http://192.168.160.58/Paris2024/api/athletes/Search";
+    const api_url = "http://192.168.160.58/Paris2024/api/Technical_officials/Search";
 
     $("#procura").autocomplete({
         minLength: 2,
@@ -168,17 +167,17 @@
                             value: ''
                         }]);
                     } else {
-                        const results = $.map(data.slice(0, 10), function (athlete) {
+                        const results = $.map(data.slice(0, 10), function (person) {
                             return {
-                                label: athlete.Name,  // Nome do atleta
-                                value: athlete.Id     // ID para redirecionamento
+                                label: person.Name,  // Nome do atleta
+                                value: person.Id     // ID para redirecionamento
                             };
                         });
                         response(results);
                     }
                 },
                 error: function () {
-                    alert("Erro ao buscar atletas!");
+                    alert("Erro ao buscar a Pessoa!");
                 }
             });
         },
@@ -186,7 +185,7 @@
             event.preventDefault();
             if (ui.item.value) {
                 $("#procura").val(ui.item.label);
-                window.location.href = "./athlete-detail.html?id=" + ui.item.value;
+                window.location.href = "./referees-detail.html?id=" + ui.item.value;
             }
         },
         focus: function (event, ui) {

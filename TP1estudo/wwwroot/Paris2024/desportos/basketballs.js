@@ -1,18 +1,12 @@
 ﻿
 const translations = {
     en: {
-        id: "Id",
         name: "Name",
-        birth_date: "Birth Date",
-        birth_place: "Birth Place",
-        sex: "Sex"
+        sport_id: "Sport Id",
     },
     pt: {
-        id: "Id",
         name: "Nome",
-        birth_date: "Data de nascimento",
-        birth_place: "Nacionalidade",
-        sex: "Sexo"
+        sport_id: "Id do desporto",
     }
 };
 
@@ -22,61 +16,40 @@ var vm = function () {
     var self = this;
 
     // Observáveis
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/athletes');
-    self.displayName = 'Paris2024 Athletes List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Basketballs/Events');
+    self.displayName = 'Paris2024 Basketballs List';
     self.currentLanguage = ko.observable('en');
     self.error = ko.observable('');
-    self.athletes = ko.observableArray([]);
+    self.basketballs = ko.observableArray([]);
+    self.page1 = ko.observableArray([]);
+    self.page2 = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(50);
-    self.hasPrevious = ko.observable(false);
-    self.hasNext = ko.observable(false);
-    self.totalPages = ko.observable(0);
 
-    // Computed observables para paginação
-    self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
-    self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
-
-    self.fromRecord = ko.computed(() => (self.currentPage() - 1) * self.pagesize() + 1);
-    self.toRecord = ko.computed(() => Math.min(self.currentPage() * self.pagesize(), self.totalRecords()));
-
-    self.pageArray = function () {
-        const size = Math.min(self.totalPages(), 9);
-        const step = Math.max(0, Math.min(self.currentPage() - 5, self.totalPages() - 9));
-        return Array.from({ length: size }, (_, i) => i + 1 + step);
-    };
-
-    //obter o texto traduzido do array
+    // Trocar linguagem
     self.getTranslation = function (key) {
         const lang = self.currentLanguage();
         return translations[lang][key] || key;
     };
 
-    //trocar a linguagem fml
-    self.changeLanguage = function(lang) {
+    self.changeLanguage = function (lang) {
         if (translations[lang]) {
             self.currentLanguage(lang);
         }
     };
 
-    // Função para ativar a página
-    self.activate = function (id) {
-        console.log('CALL: getAthletes...');
-        const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
+    // Ativar e carregar dados
+    self.activate = function () {
+        console.log('CALL: getEvents...');
+        const composedUri = `${self.baseUri()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.athletes(data.Athletes);
-            self.currentPage(data.CurrentPage);
-            self.hasNext(data.HasNext);
-            self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize);
-            self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAhletes);
+            console.log(data);
+            // Divide os dados em 2 páginas
+            const items = data.Stages;
         });
     };
 
-    // Função AJAX
+    // AJAX Helper
     function ajaxHelper(uri, method, data) {
         self.error('');
         return $.ajax({
