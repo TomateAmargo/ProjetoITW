@@ -1,60 +1,208 @@
-﻿body {
-    padding: 56px 0 56px 0; font-family: 'Open Sans', "sans-serif";
+﻿/* General Body Styling */
+body {
+    padding: 56px 0;
+    font-family: 'Open Sans', "sans-serif";
 }
-main { 
-    padding: 5px 0 5px 0;
 
+main {
+    padding: 5px 0;
 }
-.bannerTop{
-     height: 480px; margin: auto; background-position: center center; background-repeat: no-repeat; background-size: cover;
+
+.bannerTop {
+    height: 480px;
+    margin: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-/* button default
----------------------------- */
+
+/* Button Defaults */
 .btn-default {
     color: #333;
     background-color: #f8f9fa;
     border-color: #ccc;
 }
 
-    .btn-default:focus {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #8c8c8c;
-    }
+.btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
 
-    .btn-default:active,
-    .btn-default:hover {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #adadad;
-    }
+.btn-default:active,
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
 
-/* button-xs
----------------------------- */
+/* Extra Button Styles */
 .btn-group-xs > .btn, .btn-xs {
     padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
 }
-a.text-white {
-    color: var(--bs-link-color); /* Use Bootstrap's link variable */
-  }
-  
-  [data-bs-theme="light"] a.text-white {
-    color: #000 !important; /* Black or dark color for light mode */
-  }
-  
-  [data-bs-theme="dark"] a.text-white {
-    color: #fff !important; /* White color for dark mode */
-  }
-  .clickable-row {
+
+/* Clickable Row */
+.clickable-row {
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .clickable-row:hover {
-    background-color: #f8f9fa; /* Light gray background on hover */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Blue glow effect */
-    z-index: 1; /* Ensure the glow is above other elements */
-    position: relative; /* For z-index to work */
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+    z-index: 1;
+    position: relative;
+}
+
+/* Sporty Navbar Styles */
+.sporty-navbar {
+    background: linear-gradient(90deg, #0056b3, #009688);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Open Sans', sans-serif;
+    padding: 8px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark Mode */
+[data-bs-theme="dark"] .sporty-navbar {
+    background: linear-gradient(90deg, #00274d, #004d40);
+    color: #e0e0e0;
+}
+
+/* Logo Styles */
+.sporty-navbar .navbar-brand img {
+    height: 36px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.sporty-navbar .navbar-brand img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Nav Links */
+.sporty-navbar .nav-link {
+    color: #f8f9fa;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.sporty-navbar .nav-link:hover, .sporty-navbar .nav-link:focus {
+    color: #4caf50;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sporty-navbar .nav-link.active {
+    color: #4caf50;
+    font-weight: 600;
+    border-bottom: 2px solid #4caf50;
+}
+
+/* Dark Mode Links */
+[data-bs-theme="dark"] .sporty-navbar .nav-link {
+    color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .sporty-navbar .nav-link:hover, 
+[data-bs-theme="dark"] .sporty-navbar .nav-link:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Toggler Icon */
+.sporty-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Switch Toggle Styling */
+.sporty-navbar .switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+    margin: auto 10px;
+    transform: scale(0.8); /* Adjust size for navbar */
+    animation: none;
+}
+
+.sporty-navbar .switch::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    filter: blur(20px);
+    z-index: -1;
+    border-radius: 50px;
+    background-color: #d8ff99;
+    background-image: radial-gradient(at 21% 46%, hsla(183,65%,60%,1) 0px, transparent 50%),
+    radial-gradient(at 23% 25%, hsla(359,74%,70%,1) 0px, transparent 50%),
+    radial-gradient(at 20% 1%, hsla(267,83%,75%,1) 0px, transparent 50%),
+    radial-gradient(at 86% 87%, hsla(204,69%,68%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 41%, hsla(171,72%,77%,1) 0px, transparent 50%),
+    radial-gradient(at 55% 24%, hsla(138,60%,62%,1) 0px, transparent 50%);
+}
+
+.sporty-navbar .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sporty-navbar .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fdfefedc;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.sporty-navbar .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.3em;
+    bottom: 0.35em;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -10px 10px 0px inset,
+    rgba(0, 0, 0, 0.09) 0px -1px 15px -8px;
+    background-color: #ff99fd;
+    background-image: radial-gradient(at 81% 39%, hsla(327,79%,79%,1) 0px, transparent 50%),
+    radial-gradient(at 11% 72%, hsla(264,64%,79%,1) 0px, transparent 50%),
+    radial-gradient(at 23% 20%, hsla(75,98%,71%,1) 0px, transparent 50%);
+}
+
+.sporty-navbar .input__check:checked + .slider {
+    background-color: #17202A;
+}
+
+.sporty-navbar .input__check:checked + .slider:before {
+    transform: translateX(1.5em);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+    .sporty-navbar .nav-link {
+        margin: 5px 0;
+    }
+
+    .sporty-navbar .navbar-collapse {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px;
+        border-radius: 8px;
+    }
 }
