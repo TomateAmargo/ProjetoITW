@@ -21,9 +21,8 @@ var vm = function () {
     self.currentLanguage = ko.observable('en');
     self.error = ko.observable('');
     self.basketballs = ko.observableArray([]);
-    self.page1 = ko.observableArray([]);
-    self.page2 = ko.observableArray([]);
-    self.currentPage = ko.observable(1);
+    self.pyramidData = ko.observableArray([]);
+
 
     // Trocar linguagem
     self.getTranslation = function (key) {
@@ -43,9 +42,8 @@ var vm = function () {
         const composedUri = `${self.baseUri()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            console.log(data);
-            // Divide os dados em 2 páginas
-            const items = data.Stages;
+            self.basketballs(data[0].Stages);
+
         });
     };
 
@@ -65,6 +63,7 @@ var vm = function () {
             }
         });
     }
+
 
     // Funções para mostrar e esconder o loading
     function showLoading() {
