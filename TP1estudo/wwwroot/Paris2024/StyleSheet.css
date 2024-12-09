@@ -1,11 +1,22 @@
 ﻿/* General Body Styling */
-body {
-    padding: 56px 0;
-    font-family: 'Open Sans', "sans-serif";
+/* Ensure the body and html take the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
+/* Flexbox layout for the entire page */
+
+body {
+    padding-top: 50px; /* For smaller screens */
+    display: flex;
+    flex-direction: column;
+    }
+
+
+/* Main content should take available space */
 main {
-    padding: 5px 0;
+    flex: 1;
 }
 
 .bannerTop {
@@ -43,6 +54,20 @@ main {
     line-height: 1.5;
     border-radius: 3px;
 }
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
 
 /* Clickable Row */
 .clickable-row {
@@ -280,3 +305,13 @@ main {
 }
 
 /* Responsive 
+.table-hover tbody tr:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Clickable row cursor and subtle highlight */
+.clickable-row:hover {
+    background-color: #e9f5ff !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}

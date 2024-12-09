@@ -1,39 +1,38 @@
-﻿(() => {
-    'use strict';
+﻿$(document).ready(function () {
+    const themeToggle = $('#themeToggle');
+    const themeLabel = $('#themeLabel');
+    const languageSelect = $('#languageSelect');
 
-    const getStoredTheme = () => localStorage.getItem('theme');
-    const setStoredTheme = theme => localStorage.setItem('theme', theme);
+    // Load saved preferences
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedLanguage = localStorage.getItem('language') || 'en';
 
-    const getPreferredTheme = () => {
-        const storedTheme = getStoredTheme();
-        if (storedTheme) {
-            return storedTheme;
-        }
+    // Apply saved theme
+    if (savedTheme === 'dark') {
+        $('body').attr('data-bs-theme', 'dark');
+        themeToggle.prop('checked', true);
+        themeLabel.text('Dark Mode');
+    }
 
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
+    // Set saved language
+    languageSelect.val(savedLanguage);
 
-    const setTheme = theme => {
-        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
+    // Toggle theme
+    themeToggle.on('change', function () {
+        if ($(this).is(':checked')) {
+            $('body').attr('data-bs-theme', 'dark');
+            themeLabel.text('Dark Mode');
+            localStorage.setItem('theme', 'dark');
         } else {
-            document.documentElement.setAttribute('data-bs-theme', theme);
+            $('body').attr('data-bs-theme', 'light');
+            themeLabel.text('Light Mode');
+            localStorage.setItem('theme', 'light');
         }
-    };
-
-    // Sync checkbox state and add event listener
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentTheme = getPreferredTheme();
-        const themeToggleCheckbox = document.querySelector('.input__check');
-        themeToggleCheckbox.checked = currentTheme === 'dark';
-
-        themeToggleCheckbox.addEventListener('change', () => {
-            const newTheme = themeToggleCheckbox.checked ? 'dark' : 'light';
-            setStoredTheme(newTheme);
-            setTheme(newTheme);
-        });
-
-        // Apply initial theme
-        setTheme(currentTheme);
     });
-})();
+
+    // Update language
+    languageSelect.on('change', function () {
+        const selectedLanguage = $(this).val();
+        localStorage.setItem('language', selectedLanguage);
+    });
+});

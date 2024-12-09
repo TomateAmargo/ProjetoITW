@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Switcher</title>
+    <script>
+        // Language data
+        const translations = {
+            en: {
+                heading: "Welcome",
+                paragraph: "This is an example of a multi-language website.",
+                button: "Change to Spanish"
+            },
+            es: {
+                heading: "Bienvenido",
+                paragraph: "Este es un ejemplo de un sitio web multilingüe.",
+                button: "Cambiar a inglés"
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        function changeLanguage() {
+            // Toggle the language
+            currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
+
+            // Update the content
+            document.getElementById('heading').textContent = translations[currentLanguage].heading;
+            document.getElementById('paragraph').textContent = translations[currentLanguage].paragraph;
+            document.getElementById('language-button').textContent = translations[currentLanguage].button;
+
+            // Update the lang attribute
+            document.documentElement.lang = currentLanguage;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="heading">Welcome</h1>
+    <p id="paragraph">This is an example of a multi-language website.</p>
+    <button id="language-button" onclick="changeLanguage()">Change to Spanish</button>
+</body>
+</html>

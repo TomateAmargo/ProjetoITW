@@ -1,18 +1,19 @@
-﻿
-const translations = {
+﻿const translations = {
     en: {
         id: "Id",
         name: "Name",
         birth_date: "Birth Date",
         birth_place: "Birth Place",
-        sex: "Sex"
+        sex: "Sex",
+        favorite: "Favorite"
     },
     pt: {
         id: "Id",
         name: "Nome",
         birth_date: "Data de nascimento",
         birth_place: "Nacionalidade",
-        sex: "Sexo"
+        sex: "Sexo",
+        favorite: "Favorito"
     }
 };
 
@@ -27,6 +28,8 @@ var vm = function () {
     self.currentLanguage = ko.observable('en');
     self.error = ko.observable('');
     self.athletes = ko.observableArray([]);
+    self.filteredAthletes = ko.observableArray([]);
+    self.favoriteFilter = ko.observable('all'); // Filter state
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -37,7 +40,6 @@ var vm = function () {
     // Computed observables para paginação
     self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
     self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
-
     self.fromRecord = ko.computed(() => (self.currentPage() - 1) * self.pagesize() + 1);
     self.toRecord = ko.computed(() => Math.min(self.currentPage() * self.pagesize(), self.totalRecords()));
 
@@ -47,18 +49,54 @@ var vm = function () {
         return Array.from({ length: size }, (_, i) => i + 1 + step);
     };
 
-    //obter o texto traduzido do array
+    // Get translated text
     self.getTranslation = function (key) {
         const lang = self.currentLanguage();
         return translations[lang][key] || key;
     };
 
-    //trocar a linguagem fml
-    self.changeLanguage = function(lang) {
+    // Change language
+    self.changeLanguage = function (lang) {
         if (translations[lang]) {
             self.currentLanguage(lang);
         }
     };
+
+    // Map athletes with a favorite property
+    // Filter athletes based on favorites
+self.filterAthletes = function () {
+    const filter = self.favoriteFilter();
+    const athletes = self.athletes();
+    
+    // Reset the filtered athletes based on the selected filter
+    if (filter === 'favorites') {
+        // Show only athletes marked as favorite
+        self.filteredAthletes(athletes.filter(a => a.IsFavorite()));
+    } else if (filter === 'non-favorites') {
+        // Show only athletes not marked as favorite
+        self.filteredAthletes(athletes.filter(a => !a.IsFavorite()));
+    } else {
+        // Show all athletes
+        self.filteredAthletes(athletes);
+    }
+};
+
+// Update toggleFavorite to ensure correct reactivity
+self.mapAthletes = function (data) {
+    return data.map(a => ({
+        ...a,
+        IsFavorite: ko.observable(false),
+        toggleFavorite: function () {
+            // Toggle the favorite status
+            this.IsFavorite(!this.IsFavorite());
+
+            // Update the filtered list dynamically
+            self.filterAthletes();
+        }
+    }));
+};
+
+    
 
     // Função para ativar a página
     self.activate = function (id) {
@@ -66,7 +104,9 @@ var vm = function () {
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.athletes(data.Athletes);
+            const athletesWithFavorites = self.mapAthletes(data.Athletes);
+            self.athletes(athletesWithFavorites);
+            self.filteredAthletes(athletesWithFavorites); // Initialize filtered list
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -93,7 +133,7 @@ var vm = function () {
         });
     }
 
-    // Funções para mostrar e esconder o loading
+    // Show/Hide loading modal
     function showLoading() {
         $("#myModal").modal('show', { backdrop: 'static', keyboard: false });
     }
@@ -101,16 +141,16 @@ var vm = function () {
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
-        })
+        });
     }
 
-    // Função para obter parâmetros da URL
+    // Get URL parameter
     function getUrlParameter(sParam) {
         const params = new URLSearchParams(window.location.search);
         return params.get(sParam);
     }
 
-    // Inicialização
+    // Initialize
     showLoading();
     const pg = getUrlParameter('page') || 1;
     self.activate(pg);
@@ -121,5 +161,3 @@ $(document).ready(function () {
     console.log("Document ready!");
     ko.applyBindings(new vm());
 });
-
-
