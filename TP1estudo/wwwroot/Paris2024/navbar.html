@@ -41,7 +41,7 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            <i class="fa fa-list text-info"></i> Main List
+                            <i class="fa fa-list text-info"></i> Discover
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="mainListDropdown">
                             <li>
@@ -55,10 +55,16 @@
                                 </a>
                             </li>
                             <li>
+                                <a class="dropdown-item" href="referees/referees.html">
+                                    <i class="fa fa-user-o text-info"></i> Referess
+                                </a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="teams/teams.html">
                                     <i class="fa fa-flag-o text-danger"></i> Teams
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                     <!-- Torch Route -->
@@ -75,19 +81,117 @@
                     </li>
                 </ul>
                 <!-- Toggle Switch -->
-                <div class="toggle-theme">
-                    <label class="switch">
-                        <input type="checkbox" class="input__check">
-                        <span class="slider"></span>
-                    </label>
-                </div>
+                <li class="nav-item dropdown">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsMenu">
+                        <!-- Theme Toggle -->
+                        <li class="dropdown-item">
+                            <div class="toggle-theme">
+                                <label class="switch">
+                                    <input type="checkbox" class="input__check" id="themeToggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <span id="themeLabel">Light Mode</span>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- Language Selection -->
+                        <li class="dropdown-item">
+                            <label for="languageSelect" class="form-label">
+                                <i class="fa fa-globe"></i> Select Language
+                            </label>
+                            <select id="languageSelect" class="form-select">
+                                <option value="en" selected>English</option>
+                                <option value="pt">Português</option>
+                            </select>
+                        </li>
+                    </ul>
+                </li>
+                
+                
                 
                 
             </div>
         </div>
     </nav>
+
+    <footer class="sporty-footer py-4 fixed-bottom">
+        <div class="container-lg">
+            <div class="row text-center text-md-start">
+                <!-- Social Links -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase">Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light">Home</a></li>
+                        <li><a href="torch/torch.html" class="text-light">Torch Route</a></li>
+                        <li><a href="extras.html" class="text-light">Extras</a></li>
+                    </ul>
+                </div>
+                <!-- Copyright -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase">About</h5>
+                    <p class="small">Paris 2024 - A celebration of unity through sports. Join us on the journey to the Olympic games.</p>
+                    <p class="small">&copy; 2024 Paris 2024. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./lib/jquery/dist/jquery.min.js"></script>
     <script src="theme.js"></script>
+    <script>
+        $(document).ready(function () {
+            const themeToggle = $('#themeToggle');
+            const themeLabel = $('#themeLabel');
+            const languageSelect = $('#languageSelect');
+    
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLanguage = localStorage.getItem('language') || 'en';
+    
+            // Apply saved theme
+            if (savedTheme === 'dark') {
+                $('body').attr('data-bs-theme', 'dark');
+                themeToggle.prop('checked', true);
+                themeLabel.text('Dark Mode');
+            }
+    
+            // Set saved language
+            languageSelect.val(savedLanguage);
+    
+            // Toggle theme
+            themeToggle.on('change', function () {
+                if ($(this).is(':checked')) {
+                    $('body').attr('data-bs-theme', 'dark');
+                    themeLabel.text('Dark Mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    $('body').attr('data-bs-theme', 'light');
+                    themeLabel.text('Light Mode');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+    
+            // Update language
+            languageSelect.on('change', function () {
+                const selectedLanguage = $(this).val();
+                localStorage.setItem('language', selectedLanguage);
+            });
+        });
+    </script>
+    
 </body>
 </html>

@@ -206,3 +206,77 @@ main {
         border-radius: 8px;
     }
 }
+
+/* Theme Label Styling */
+.toggle-theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#themeLabel {
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+[data-bs-theme="dark"] #themeLabel {
+    color: #ffffff; /* Ensure the label text is visible in dark mode */
+}
+
+
+/* Dropdown Customization */
+.dropdown-menu {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sporty Footer Styling */
+.sporty-footer {
+    background: linear-gradient(90deg, #0056b3, #009688);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+[data-bs-theme="dark"] .sporty-footer {
+    background: linear-gradient(90deg, #00274d, #004d40);
+    color: #e0e0e0;
+}
+
+/* Social Links */
+.sporty-footer .social-links a {
+    font-size: 1.5rem;
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sporty-footer .social-links a:hover {
+    color: #4caf50;
+    transform: scale(1.2);
+}
+
+/* Quick Links */
+.sporty-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sporty-footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sporty-footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sporty-footer ul li a:hover {
+    color: #4caf50;
+    text-decoration: underline;
+}
+
+/* Responsive 
