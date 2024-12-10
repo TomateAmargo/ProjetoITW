@@ -96,3 +96,4 @@ $(document).ready(function () {
     console.log("Document ready!");
     ko.applyBindings(new vm());
 });
+
