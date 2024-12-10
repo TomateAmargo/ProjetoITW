@@ -48,34 +48,31 @@
     <div class="container mt-4">
         <div class="row border-bottom py-2 mb-2">
             <h2 class="col-6" data-bind="text:displayName"></h2>
-            <div class="col-6" id="cover">
-                <div class="row" style="justify-content:end">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:35%" id="procura" name="procura" autocomplete="off">
-                </div>
-            </div>
-        </div>
-         
         <table class="table table-striped table-sm small">
             <thead class="table-secondary">
                 <tr>
                     <th scope="col" >Tag</th>
                     <th scope="col" data-bind="text: getTranslation('name')"></th>
+                    <th scope="col" data-bind="text: getTranslation('sport_id')"></th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: basketballs">
-                <tr>
+                <tr 
+                    class="clickable-row" 
+                    data-bind="click: function() { window.location.href = 'basketballs-detail.html?EventId=' + StageId.split('-')[0] + '&StageId=' + StageId  }"
+                    style="cursor: pointer;">
                     <td class="align-middle" data-bind="text: StageId"></td>
                     <td class="align-middle" data-bind="text: StageName"></td>
                     <!-- Verifica se BirthDate não é nulo -->
 «                    <td class="align-middle text-center">
                         <!-- Optional eye icon -->
+                        <a data-bind="attr: { href: 'basketballs-detail.html?EventId=' + StageId.split('-')[0] + '&StageId=' + StageId }" class="text-decoration-none">
                             <i class="fa fa-eye text-primary" title="View Details"></i>
                         </a>
                     </td>
                 </tr>
             </tbody>
-            
             
         </table>
     </div>
@@ -111,53 +108,5 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="basketballs.js"></script>
     <script src="../theme.js"></script>
-    <script>
-        $(document).ready(function () {
-    const api_url = "http://192.168.160.58/Paris2024/api/basketballs/Search";
-
-    $("#procura").autocomplete({
-        minLength: 2,
-        source: function (request, response) {
-            $.ajax({
-                type: "GET",
-                url: api_url,
-                data: {
-                    q: request.term.toLowerCase()  // Usando o termo do autocomplete
-                },
-                success: function (data) {
-                    if (!data.length) {
-                        response([{
-                            label: 'Sem resultados',
-                            value: ''
-                        }]);
-                    } else {
-                        const results = $.map(data.slice(0, 10), function (person) {
-                            return {
-                                label: person.Name,  // Nome do atleta
-                                value: person.Tag     // ID para redirecionamento
-                            };
-                        });
-                        response(results);
-                    }
-                },
-                error: function () {
-                    alert("Erro ao buscar a Pessoa!");
-                }
-            });
-        },
-        select: function (event, ui) {
-            event.preventDefault();
-            if (ui.item.value) {
-                $("#procura").val(ui.item.label);
-                window.location.href = "./basketballs-detail.html?id=" + ui.item.value;
-            }
-        },
-        focus: function (event, ui) {
-            event.preventDefault();
-            $("#procura").val(ui.item.label);
-        }
-    });
-});
-    </script>
 </body>
 </html>
