@@ -62,8 +62,7 @@ var vm = function () {
         }
     };
 
-    // Map athletes with a favorite property
-    // Filter athletes based on favorites
+// Filter athletes based on favorites
 self.filterAthletes = function () {
     const filter = self.favoriteFilter();
     const athletes = self.athletes();
@@ -81,7 +80,7 @@ self.filterAthletes = function () {
     }
 };
 
-// Update toggleFavorite to ensure correct reactivity
+// Map athletes with favorite property and ensure toggleFavorite updates the filtered list
 self.mapAthletes = function (data) {
     return data.map(a => ({
         ...a,
@@ -95,6 +94,7 @@ self.mapAthletes = function (data) {
         }
     }));
 };
+
 
     
 
