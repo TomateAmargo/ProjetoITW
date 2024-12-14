@@ -6,11 +6,7 @@ var vm = function () {
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
     self.displayName = ko.observable('Athlete Detail');
     self.error = ko.observable('');
-    self.Name = ko.observable('');
-    self.BirthDate = ko.observable('');
-    self.BirthPlace = ko.observable('');
-    self.Sex = ko.observable('');
-    self.AdditionalInfo = ko.observable('');
+    self.athlete = ko.observable('');
 
     // Function to fetch athlete details
     self.activate = function (id) {
@@ -18,11 +14,7 @@ var vm = function () {
         const composedUri = `${self.baseUri()}/${id}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.Name(data.Name);
-            self.BirthDate(data.BirthDate);
-            self.BirthPlace(data.BirthPlace);
-            self.Sex(data.Sex);
-            self.AdditionalInfo(data.AdditionalInfo || 'No additional information available.');
+            self.athlete(data);
         });
     };
 

@@ -7,7 +7,26 @@ var vm = function () {
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/medals');
     self.displayName = 'Paris2024 Medals List';
     self.error = ko.observable('');
-    self.medals = ko.observableArray([]); 
+    self.medals = ko.observableArray([]);
+    self.currentPage = ko.observable(1);
+    self.pagesize = ko.observable(20);
+    self.totalRecords = ko.observable(50);
+    self.hasPrevious = ko.observable(false);
+    self.hasNext = ko.observable(false);
+    self.totalPages = ko.observable(0);
+
+    // Computed observables
+    self.previousPage = ko.computed(() => Math.max(1, self.currentPage() - 1));
+    self.nextPage = ko.computed(() => Math.min(self.totalPages(), self.currentPage() + 1));
+
+    self.fromRecord = ko.computed(() => (self.currentPage() - 1) * self.pagesize() + 1);
+    self.toRecord = ko.computed(() => Math.min(self.currentPage() * self.pagesize(), self.totalRecords()));
+
+    self.pageArray = function () {
+        const size = Math.min(self.totalPages(), 9);
+        const step = Math.max(0, Math.min(self.currentPage() - 5, self.totalPages() - 9));
+        return Array.from({ length: size }, (_, i) => i + 1 + step);
+    };
 
     // Função para ativar a página
     self.activate = function (id) {
@@ -16,7 +35,13 @@ var vm = function () {
         showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.medals(data.Medals); 
+            self.medals(data.Medals);
+            self.currentPage(data.CurrentPage);
+            self.hasNext(data.HasNext);
+            self.hasPrevious(data.HasPrevious);
+            self.pagesize(data.PageSize);
+            self.totalPages(data.TotalPages);
+            self.totalRecords(data.TotalMedals); 
         });
     };
 
