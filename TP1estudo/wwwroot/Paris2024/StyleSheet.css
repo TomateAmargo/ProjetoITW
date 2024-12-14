@@ -1,18 +1,14 @@
 ﻿/* General Body Styling */
-/* Ensure the body and html take the full height of the viewport */
 html, body {
     height: 100%;
     margin: 0;
 }
 
-/* Flexbox layout for the entire page */
-
 body {
     padding-top: 50px; /* For smaller screens */
     display: flex;
     flex-direction: column;
-    }
-
+}
 
 /* Main content should take available space */
 main {
@@ -34,27 +30,38 @@ main {
     border-color: #ccc;
 }
 
-.btn-default:focus {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #8c8c8c;
-}
-
-.btn-default:active,
-.btn-default:hover {
+.btn-default:focus, .btn-default:active, .btn-default:hover {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
 }
 
 /* Extra Button Styles */
-.btn-group-xs > .btn, .btn-xs {
+.btn-group-xs > .btn,
+.btn-xs {
     padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
 }
 
+.btn-link {
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #d2dae0;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-color: #6c757d;
+    --bs-btn-disabled-border-color: transparent;
+    --bs-btn-box-shadow: 0 0 0 #000;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    text-decoration: underline;
+}
+
+/* Carousel Indicators */
 .carousel-indicators {
     position: absolute;
     bottom: 10px;
@@ -67,7 +74,6 @@ main {
     margin: 0;
     list-style: none;
 }
-
 
 /* Clickable Row */
 .clickable-row {
@@ -91,7 +97,6 @@ main {
     transition: background-color 0.3s ease;
 }
 
-/* Dark Mode */
 [data-bs-theme="dark"] .sporty-navbar {
     background: linear-gradient(90deg, #00274d, #004d40);
     color: #e0e0e0;
@@ -119,7 +124,8 @@ main {
     border-radius: 5px;
 }
 
-.sporty-navbar .nav-link:hover, .sporty-navbar .nav-link:focus {
+.sporty-navbar .nav-link:hover,
+.sporty-navbar .nav-link:focus {
     color: #4caf50;
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -130,12 +136,11 @@ main {
     border-bottom: 2px solid #4caf50;
 }
 
-/* Dark Mode Links */
 [data-bs-theme="dark"] .sporty-navbar .nav-link {
     color: #e0e0e0;
 }
 
-[data-bs-theme="dark"] .sporty-navbar .nav-link:hover, 
+[data-bs-theme="dark"] .sporty-navbar .nav-link:hover,
 [data-bs-theme="dark"] .sporty-navbar .nav-link:focus {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -169,11 +174,11 @@ main {
     border-radius: 50px;
     background-color: #d8ff99;
     background-image: radial-gradient(at 21% 46%, hsla(183,65%,60%,1) 0px, transparent 50%),
-    radial-gradient(at 23% 25%, hsla(359,74%,70%,1) 0px, transparent 50%),
-    radial-gradient(at 20% 1%, hsla(267,83%,75%,1) 0px, transparent 50%),
-    radial-gradient(at 86% 87%, hsla(204,69%,68%,1) 0px, transparent 50%),
-    radial-gradient(at 99% 41%, hsla(171,72%,77%,1) 0px, transparent 50%),
-    radial-gradient(at 55% 24%, hsla(138,60%,62%,1) 0px, transparent 50%);
+        radial-gradient(at 23% 25%, hsla(359,74%,70%,1) 0px, transparent 50%),
+        radial-gradient(at 20% 1%, hsla(267,83%,75%,1) 0px, transparent 50%),
+        radial-gradient(at 86% 87%, hsla(204,69%,68%,1) 0px, transparent 50%),
+        radial-gradient(at 99% 41%, hsla(171,72%,77%,1) 0px, transparent 50%),
+        radial-gradient(at 55% 24%, hsla(138,60%,62%,1) 0px, transparent 50%);
 }
 
 .sporty-navbar .switch input {
@@ -204,11 +209,11 @@ main {
     transition: .4s;
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -10px 10px 0px inset,
-    rgba(0, 0, 0, 0.09) 0px -1px 15px -8px;
+        rgba(0, 0, 0, 0.09) 0px -1px 15px -8px;
     background-color: #ff99fd;
     background-image: radial-gradient(at 81% 39%, hsla(327,79%,79%,1) 0px, transparent 50%),
-    radial-gradient(at 11% 72%, hsla(264,64%,79%,1) 0px, transparent 50%),
-    radial-gradient(at 23% 20%, hsla(75,98%,71%,1) 0px, transparent 50%);
+        radial-gradient(at 11% 72%, hsla(264,64%,79%,1) 0px, transparent 50%),
+        radial-gradient(at 23% 20%, hsla(75,98%,71%,1) 0px, transparent 50%);
 }
 
 .sporty-navbar .input__check:checked + .slider {
@@ -219,6 +224,10 @@ main {
     transform: translateX(1.5em);
 }
 
+li.nav-item.dropdown {
+    list-style-type: none;
+  }
+
 /* Responsive Adjustments */
 @media (max-width: 991px) {
     .sporty-navbar .nav-link {
@@ -226,37 +235,9 @@ main {
     }
 
     .sporty-navbar .navbar-collapse {
-        background: rgba(0, 0, 0, 0.9);
-        padding: 10px;
-        border-radius: 8px;
+        background: rgba(0, 0, 0, 0);
     }
 }
-
-/* Theme Label Styling */
-.toggle-theme {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#themeLabel {
-    margin-left: 10px;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-[data-bs-theme="dark"] #themeLabel {
-    color: #ffffff; /* Ensure the label text is visible in dark mode */
-}
-
-
-/* Dropdown Customization */
-.dropdown-menu {
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
 /* Sporty Footer Styling */
 .sporty-footer {
     background: linear-gradient(90deg, #0056b3, #009688);
@@ -304,7 +285,7 @@ main {
     text-decoration: underline;
 }
 
-/* Responsive 
+/* Responsive */
 .table-hover tbody tr:hover {
     background-color: #f0f8ff;
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);

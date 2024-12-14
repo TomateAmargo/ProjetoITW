@@ -11,13 +11,13 @@
     <script src="https://kit.fontawesome.com/337969d222.js" crossorigin="anonymous"></script>
     <link href="../StyleSheet.css" rel="stylesheet" />
 </head>
-<body>
-
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-grow-1">
     <!-- Inclusão da Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top sporty-navbar">
         <div class="container-lg">
-            <a class="navbar-brand" href="../index.html" title="Paris 2024">
-                <img src="/TP1estudo/wwwroot/Paris2024/Images/Paris2024.png" alt="Paris 2024 Logo" />
+            <a class="navbar-brand" href="./index.html" title="Paris 2024">
+                <img src="../Images/Paris2024.png" alt="Paris 2024 Logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,10 +37,18 @@
                             <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                         </ul>
                     </li>
-                    <!-- Torch Route -->
-                    <li class="nav-item"><a class="nav-link" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
+                    <!-- Experience Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="experienceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-star text-warning"></i> Experience
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
+                            <li><a class="dropdown-item" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
+                            <li><a class="dropdown-item" href="../venue/venue.html"><i class="fa fa-building text-primary"></i> Venue</a></li>
+                        </ul>
+                    </li>
                     <!-- Extras -->
-                    <li class="nav-item"><a class="nav-link" href="../extras.html"><i class="fa fa-magic"></i> &middot;&middot;&middot;</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../competitions/competitions.html"><i class="fa-solid fa-person-running"></i> Competitons</a></li>
                 </ul>
                 
                 <!-- Settings Menu -->
@@ -72,7 +80,7 @@
                 </li>
             </div>
         </div>
-    </nav>    
+    </nav> s  
 
     <!-- Working Area -->
     <div class="container">
@@ -136,7 +144,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../../Images/Paris2024.png" height="30" /> Loading data...
+                        <img src="../Images/Paris2024.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">
@@ -145,7 +153,7 @@
             </div>
         </div>
     </div>
-
+</main>
     <!-- Inclusão do Footer -->
     <footer class="sporty-footer py-4">
         <div class="container-lg">
@@ -154,19 +162,19 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="text-uppercase">Follow Us</h5>
                     <div class="social-links">
-                        <a href="#" class="text-light me-3"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fa fa-instagram"></i></a>
-                        <a href="#" class="text-light"><i class="fa fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/olympics/" class="text-light me-3"><i class="fa fa-facebook"></i></a>
+                        <a href="https://x.com/Olympics" class="text-light me-3"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/ olympics" class="text-light me-3"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/Olympics" class="text-light"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
                 <!-- Quick Links -->
                 <div class="col-md-4 mb-3">
                     <h5 class="text-uppercase">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-light">Home</a></li>
-                        <li><a href="torch/torch.html" class="text-light">Torch Route</a></li>
-                        <li><a href="extras.html" class="text-light">Extras</a></li>
+                        <li><a href="./index.html" class="text-light">Home</a></li>
+                        <li><a href="./torch/torch.html" class="text-light">Torch Route</a></li>
+                        <li><a href="https://olympics.com/en/paris-2024" class="text-light">Official Paris 2024 Olympics Website</a></li>
                     </ul>
                 </div>
                 <!-- About -->
@@ -176,7 +184,7 @@
                     <p class="small">&copy; 2024 Paris 2024. All Rights Reserved.</p>
                 </div>
             </div>
-        </div>
+        </div>  
     </footer>
 
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
