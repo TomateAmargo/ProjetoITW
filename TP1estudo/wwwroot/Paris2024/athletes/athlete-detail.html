@@ -112,7 +112,7 @@
                         <!-- Informações gerais -->
                         <div class="col-md-8">
                             <ul class="list-group mb-3">
-                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate"></span></li>
+                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate ? BirthDate.split('T')[0] : ''"></span></li>                   
                                 <li class="list-group-item"><strong>Birth Place:</strong> <span data-bind="text: BirthPlace"></span></li>
                                 <li class="list-group-item"><strong>Sex:</strong> <span data-bind="text: Sex"></span></li>
                                 <li class="list-group-item"><strong>Height:</strong> <span data-bind="text: Height"></span></li>

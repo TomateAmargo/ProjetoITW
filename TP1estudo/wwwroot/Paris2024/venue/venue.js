@@ -1,5 +1,5 @@
 ﻿
-const Stadiums = [
+const Paris = [
     "Hôtel de Ville",
     "La Concorde",
     "Pont Alexandre III",
@@ -25,7 +25,41 @@ const Stadiums = [
     "South Paris Arena 6",
     "South Paris Arena",
     "Stade de France",
-    "Trocadéro"
+    "Trocadéro",
+    "Château de Versailles"
+  ];
+
+  const bordeaux = [
+    "Bordeaux Stadium"
+  ];
+  
+  const lyon = [
+    "Lyon Stadium"
+  ];
+  
+  const marseille = [
+    "Marseille Marina",
+    "Marseille Stadium"
+  ];
+  
+  const nantes = [
+    "La Beaujoire Stadium"
+  ];
+  
+  const nice = [
+    "Nice Stadium"
+  ];
+  
+  const chateauroux = [
+    "Chateauroux Shooting Centre"
+  ];
+  
+  const tahiti = [
+    "Teahupo'o, Tahiti"
+  ];
+  
+  const vairesSurMarne = [
+    "Vaires-sur-Marne Nautical Stadium"
   ];
 
   
@@ -40,6 +74,16 @@ var vm = function () {
     self.error = ko.observable('');
     self.venue = ko.observableArray([]); 
 
+    self.Paris = ko.observable('');
+    self.Lyon = ko.observable('');
+    self.Marseille = ko.observable('');
+    self.Bordeaux = ko.observable('');
+    self.Nice = ko.observable('');
+    self.Tahiti = ko.observable('');
+    self.Nantes = ko.observable('');
+    self.Chateauroux = ko.observable('');
+    self.VairesSurMarne = ko.observable('');
+
     // Função para ativar a página
     self.activate = function () {
         console.log('CALL: getVenue...');
@@ -47,27 +91,18 @@ var vm = function () {
         showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            const filterStadiums = data.filter(stadium => Stadiums.includes(stadium.Name));
-            console.log(filterStadiums);
+            const filteredData = data.filter(item => item.NumSports !== 0);
+            self.Paris(filteredData.filter(stadium => Paris.includes(stadium.Name)));
+            self.Lyon(filteredData.filter(stadium => lyon.includes(stadium.Name)));
+            self.Marseille(filteredData.filter(stadium => marseille.includes(stadium.Name)));
+            self.Bordeaux(filteredData.filter(stadium => bordeaux.includes(stadium.Name)));
+            self.Nice(filteredData.filter(stadium => nice.includes(stadium.Name)));
+            self.Tahiti(filteredData.filter(stadium => tahiti.includes(stadium.Name)));
+            self.Nantes(filteredData.filter(stadium => nantes.includes(stadium.Name)));
+            self.Chateauroux(filteredData.filter(stadium => chateauroux.includes(stadium.Name)));
+            self.VairesSurMarne(filteredData.filter(stadium => vairesSurMarne.includes(stadium.Name)));
         });
     };
-
-    // Função AJAX
-    function ajaxHelper(uri, method, data) {
-        self.error('');
-        return $.ajax({
-            type: method,
-            url: uri,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data ? JSON.stringify(data) : null,
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(`AJAX Call [${uri}] Fail:`, errorThrown);
-                hideLoading();
-                self.error(errorThrown);
-            }
-        });
-    }
 
     // Funções para mostrar e esconder o loading
     function showLoading() {
@@ -92,8 +127,22 @@ var vm = function () {
     console.log("VM initialized!");
 };
 
-$(document).ready(function () {
-    console.log("Document ready!");
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: "json",
+        contentType: "application/json",
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        },
+    });
+}
+
+$('document').ready(function () {
+    console.log("ready!");
     ko.applyBindings(new vm());
 });
+
 
