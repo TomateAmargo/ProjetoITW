@@ -14,73 +14,85 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <main class="flex-grow-1">
-    <nav class="navbar navbar-expand-lg fixed-top sporty-navbar">
-        <div class="container-lg">
-            <a class="navbar-brand" href="./index.html" title="Paris 2024">
-                <img src="../Images/Paris2024.png" alt="Paris 2024 Logo" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- Discover Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="mainListDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-list text-info"></i> Discover
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="mainListDropdown">
-                            <li><a class="dropdown-item" href="../athletes/athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
-                            <li><a class="dropdown-item" href="../coaches/coaches.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
-                            <li><a class="dropdown-item" href="../referees/referees.html"><i class="fa fa-user-o text-info"></i> Referees</a></li>
-                            <li><hr class="dropdown-divider"></li> <!-- Divider -->
-                            <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                        </ul>
-                    </li>
-                    <!-- Experience Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="experienceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-star text-warning"></i> Experience
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
-                            <li><a class="dropdown-item" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
-                            <li><a class="dropdown-item" href="../venue/venue.html"><i class="fa fa-building text-primary"></i> Venue</a></li>
-                        </ul>
-                    </li>
-                    <!-- Extras -->
-                    <li class="nav-item"><a class="nav-link" href="../competitions/competitions.html"><i class="fa-solid fa-person-running"></i> Competitons</a></li>
-                </ul>
-                
-                <!-- Settings Menu -->
-                <li class="nav-item dropdown">
-                    <button class="btn btn-link dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsMenu">
-                        <!-- Theme Toggle -->
-                        <li class="dropdown-item">
-                            <div class="toggle-theme">
-                                <label class="switch">
-                                    <input type="checkbox" class="input__check" id="themeToggle">
-                                    <span class="slider"></span>
-                                </label>
-                                <span id="themeLabel">Light Mode</span>
-                            </div>
+        <nav class="navbar navbar-expand-lg fixed-top sporty-navbar">
+            <div class="container-lg">
+                <a class="navbar-brand" href="../index.html" title="Paris 2024">
+                    <img src="../Images/Paris2024.png" alt="Paris 2024 Logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- Discover Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="mainListDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-list text-info"></i> Discover
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="mainListDropdown">
+                                <li><a class="dropdown-item" href="../athletes/athletes.html"><i class="fa fa-user-o text-danger"></i> Athletes</a></li>
+                                <li><a class="dropdown-item" href="../coaches/coaches.html"><i class="fa fa-user-o text-primary"></i> Coaches</a></li>
+                                <li><a class="dropdown-item" href="../referees/referees.html"><i class="fa fa-user-o text-info"></i> Referees</a></li>
+                                <li><hr class="dropdown-divider"></li> <!-- Divider -->
+                                <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                                <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> Comités</a></li>
+                                <li><hr class="dropdown-divider"></li> <!-- Divider -->
+                                <li><a class="dropdown-item" href="../countrymedals/countrymedals.html"><i class="fa fa-flag text-primary"></i> Medals By Country</a></li>
+                                <li><a class="dropdown-item" href="../medals/medals.html"><i class="fa fa-user text-info"></i> Medals By Athlete</a></li>
+                            </ul>
                         </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <!-- Language Selector -->
-                        <li class="dropdown-item">
-                            <label for="languageSelect" class="form-label"><i class="fa fa-globe"></i> Select Language</label>
-                            <select id="languageSelect" class="form-select">
-                                <option value="en" selected>English</option>
-                                <option value="pt">Português</option>
-                            </select>
+                        <!-- Experience Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="experienceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-star text-warning"></i> Experience
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
+                                <li><a class="dropdown-item" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
+                                <li><a class="dropdown-item" href="../venue/venue.html"><i class="fa fa-building text-primary"></i> Venue</a></li>
+                            </ul>
+                        </li>
+                        <!-- Games Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-person-running"></i> Games
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+                                <li><a class="dropdown-item" href="../competitions/competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                                <li><a class="dropdown-item" href="../desportos/basketballs.html"><i class="fa fa-basketball-ball text-danger"></i> Basketball</a></li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
+    
+                    <!-- Settings Menu -->
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsMenu">
+                            <!-- Theme Toggle -->
+                            <li class="dropdown-item">
+                                <div class="toggle-theme">
+                                    <label class="switch">
+                                        <input type="checkbox" class="input__check" id="themeToggle">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <span id="themeLabel">Light Mode</span>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- Language Selector -->
+                            <li class="dropdown-item">
+                                <label for="languageSelect" class="form-label"><i class="fa fa-globe"></i> Select Language</label>
+                                <select id="languageSelect" class="form-select">
+                                    <option value="en" selected>English</option>
+                                    <option value="pt">Português</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
             </div>
-        </div>
-    </nav> 
+        </nav> 
     <!-- Working Area -->
     <div class="container my-xs-4m mt-4">
         <div class="row border-bottom py-2 mb-2">
@@ -174,8 +186,8 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="text-uppercase">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="./index.html" class="text-light">Home</a></li>
-                        <li><a href="./torch/torch.html" class="text-light">Torch Route</a></li>
+                        <li><a href="../index.html" class="text-light">Home</a></li>
+                        <li><a href="../torch/torch.html" class="text-light">Torch Route</a></li>
                         <li><a href="https://olympics.com/en/paris-2024" class="text-light">Official Paris 2024 Olympics Website</a></li>
                     </ul>
                 </div>
