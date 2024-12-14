@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg fixed-top sporty-navbar">
         <div class="container-lg">
             <a class="navbar-brand" href="../index.html" title="Paris 2024">
-                <img src="/TP1estudo/wwwroot/Paris2024/Images/Paris2024.png" alt="Paris 2024 Logo" />
+                <img src="../Images/Paris2024.png" alt="Paris 2024 Logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,14 +35,35 @@
                             <li><a class="dropdown-item" href="../referees/referees.html"><i class="fa fa-user-o text-info"></i> Referees</a></li>
                             <li><hr class="dropdown-divider"></li> <!-- Divider -->
                             <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                            <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> NOCs</a></li>
+                            <li><hr class="dropdown-divider"></li> <!-- Divider -->
+                            <li><a class="dropdown-item" href="../countrymedals/countrymedals.html"><i class="fa fa-flag text-primary"></i> Medals By Country</a></li>
+                            <li><a class="dropdown-item" href="../medals/medals.html"><i class="fa fa-user text-info"></i> Medals By Athlete</a></li>
                         </ul>
                     </li>
-                    <!-- Torch Route -->
-                    <li class="nav-item"><a class="nav-link" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
-                    <!-- Extras -->
-                    <li class="nav-item"><a class="nav-link" href="../extras.html"><i class="fa fa-magic"></i> &middot;&middot;&middot;</a></li>
+                    <!-- Experience Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="experienceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-star text-warning"></i> Experience
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
+                            <li><a class="dropdown-item" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
+                            <li><a class="dropdown-item" href="../venue/venue.html"><i class="fa fa-building text-primary"></i> Venue</a></li>
+                        </ul>
+                    </li>
+                    <!-- Games Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-person-running"></i> Games
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+                            <li><a class="dropdown-item" href="../sports/sports.html"><i class="fa-solid fa-football text-info"></i>Sports</a></li>
+                            <li><a class="dropdown-item" href="../competitions/competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                            <li><a class="dropdown-item" href="../desportos/basketballs.html"><i class="fa fa-basketball-ball text-danger"></i> Basketball</a></li>
+                        </ul>
+                    </li>
                 </ul>
-                
+
                 <!-- Settings Menu -->
                 <li class="nav-item dropdown">
                     <button class="btn btn-link dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,7 +93,7 @@
                 </li>
             </div>
         </div>
-    </nav>    
+    </nav>   
 
     <!-- Working Area -->
     <div class="container">

@@ -296,3 +296,12 @@ li.nav-item.dropdown {
     background-color: #e9f5ff !important;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
