@@ -19,9 +19,23 @@ var vm = function () {
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Basketballs/Events');
     self.displayName = 'Paris2024 Basketballs List';
     self.currentLanguage = ko.observable('en');
+    self.selectedGender = ko.observable('M');
     self.error = ko.observable('');
-    self.basketballs = ko.observableArray([]);
+    self.basketballs = ko.observableArray([]);  
     self.pyramidData = ko.observableArray([]);
+
+    self.filteredGames = ko.computed(function() {
+        var gender = self.selectedGender();
+        
+        // Verifica se o gênero é 'Men' ou 'Women' e retorna os jogos filtrados
+        if (gender === "Men") {
+            return self.basketballs()[0] ? self.basketballs()[0].Stages : [];  // Jogos masculinos
+        } else if (gender === "Women") {
+            return self.basketballs()[1] ? self.basketballs()[1].Stages : [];  // Jogos femininos
+        } else {
+            return [];
+        }
+    });
 
 
     // Trocar linguagem
@@ -42,7 +56,8 @@ var vm = function () {
         const composedUri = `${self.baseUri()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.basketballs(data[0].Stages);
+            console.log(data);
+            self.basketballs(data);  
 
         });
     };
