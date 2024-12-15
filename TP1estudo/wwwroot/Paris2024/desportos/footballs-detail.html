@@ -92,7 +92,7 @@
             </div>
         </nav> 
         <div class="container mt-4">
-            <h2>Detalhes das Partidas de Athletics</h2>
+            <h2>Detalhes das Partidas de Footballs</h2>
             <div class="row" data-bind="foreach: info">
                 <div class="col-md-6 mb-4">
                     <div class="card p-3">
@@ -111,7 +111,7 @@
                         </div>
                         <!-- Participantes -->
                         <div class="row mb-2">
-                            <div class="col-4 font-weight-bold">Participante:</div>
+                            <div class="col-4 font-weight-bold">Participantes:</div>
                             <div class="col-8">
                                     <span data-bind="text: ParticipantName"></span> 
                                     <span data-bind="text: CountryCode"></span>
@@ -124,6 +124,13 @@
                             <div class="col-8" data-bind="text: ParticipantType"></div>
                         </div>
                         <!-- Link para detalhes -->
+                        <div class="text-right mt-3">
+                            <a 
+                               class="btn btn-primary"
+                               data-bind="click: function() { $root.getinformation(EventId, Id) }">
+                                Ver Detalhes do Evento
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,6 +140,43 @@
                 <button class="btn btn-secondary" onclick="window.history.back();">Voltar</button>
             </div>
         </div>
+        <!-- Modal -->
+<div id="gameDetailsModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalhes do Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <!-- Coluna esquerda com as informações do evento -->
+                <div style="flex: 1; padding-right: 20px;">
+                    <p><strong>Evento:</strong> <span data-bind="text: modalinfo().EventName"></span> Footballs</p>
+                    <p><strong>Data:</strong> <span data-bind="text: modalinfo().Date ? (new Date(modalinfo().Date).toLocaleString('pt-BR')) : ''"></span></p>
+                    <p><strong>Resultado:</strong> <span data-bind="text: getWinnerorLoser(modalinfo().ResultWLT)"></span></p>
+                    <p><strong>Venue:</strong> <span data-bind="text: modalinfo().Venue"></span></p>
+                </div>
+            
+                <!-- Coluna direita com a bandeira e nome do país -->
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <!-- Bandeira maior -->
+                    <img data-bind="attr: { src: modalinfo().CountryFlag }" 
+                        alt="Bandeira de " data-bind="text: modalinfo().CountryCode"
+                        style="width: 120px; height: 80px; margin-bottom: 10px;"> <!-- Bandeira maior -->
+            
+                    <!-- Nome do país abaixo da bandeira -->
+                    <strong data-bind="text: modalinfo().CountryName" style="display: block; margin-top: 5px;"></strong>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
     </main>
         <footer class="sporty-footer py-4">
             <div class="container-lg">
@@ -168,6 +212,6 @@
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="athletics-detail.js"></script>
+    <script src="footballs-detail.js"></script>
 </body>
 </html>
