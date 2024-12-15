@@ -66,7 +66,12 @@ var vm = function () {
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.referees(data.Technical_officials);
+            self.referees(data.Technical_officials.map(referee => ({
+                Id: referee.Id,
+                Name: referee.Name,
+                Sex: referee.Sex,
+                BirthDate: referee.BirthDate,
+            })));
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -75,6 +80,7 @@ var vm = function () {
             self.totalRecords(data.TotalOfficials);
         });
     };
+    
 
     // Função AJAX
     function ajaxHelper(uri, method, data) {

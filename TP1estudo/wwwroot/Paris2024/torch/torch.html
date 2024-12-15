@@ -55,7 +55,7 @@
                                 <i class="fa fa-star text-warning"></i> Experience
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
-                                <li><a class="dropdown-item" href="../sports/sports.html"><i class="fa-solid fa-football text-info"></i> Sports</a></li>
+                                
                                 <li><a class="dropdown-item" href="../torch/torch.html"><i class="fa fa-map-marker text-success"></i> Torch Route</a></li>
                                 <li><a class="dropdown-item" href="../venue/venue.html"><i class="fa fa-building text-primary"></i> Venue</a></li>
                             </ul>
@@ -66,6 +66,7 @@
                                 <i class="fa-solid fa-person-running"></i> Games
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+                                <li><a class="dropdown-item" href="../sports/sports.html"><i class="fa-solid fa-football text-info"></i> Sports</a></li>
                                 <li><a class="dropdown-item" href="../competitions/competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
                                 <li><a class="dropdown-item" href="../desportos/basketballs.html"><i class="fa fa-basketball-ball text-danger"></i> Basketball</a></li>
                             </ul>
@@ -114,28 +115,45 @@
     </div>
     <!-- Work Area-->
     <main class="container-lg">
-        <table class="table table-striped table-sm small">
-            <thead class="table-secondary">
-                <tr>
-                    <th class="d-none d-lg-table-cell align-middle" scope="col">From</th>
-                    <th class="d-none d-xl-table-cell align-middle" scope="col">To</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">City</th>
-                    <th scope="col">URL</th>
-                    <th scope="col">Stage num</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: records">
-                <tr>
-                    <td class="d-none d-lg-table-cell align-middle" data-bind="text: Date_start ? (new Date(Date_start).toLocaleString('pt-BR')) : ''"></td>
-                    <td class="d-none d-xl-table-cell align-middle" data-bind="text: Date_end ? (new Date(Date_end).toLocaleString('pt-BR')) : ''"></td>
-                    <td class="align-middle" data-bind="text:Title"></td>
-                    <td class="align-middle" data-bind="text:City"></td>
-                    <td class="align-middle"><a class="nav-link" data-bind="text:Title, attr: { href: Url }" title="Show Details"></a></td>
-                    <td class="align-middle" data-bind="text:Stage_number"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container my-xs-4m mt-4">
+            <div class="row border-bottom py-2 mb-3">
+                <h2 class="col-12" data-bind="text: displayName">Event Records</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th class="d-none d-lg-table-cell align-middle" scope="col">From</th>
+                            <th class="d-none d-xl-table-cell align-middle" scope="col">To</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">City</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Stage Number</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: records">
+                        <tr>
+                            <td class="d-none d-lg-table-cell align-middle" 
+                                data-bind="text: Date_start ? (new Date(Date_start).toLocaleString('pt-BR')) : ''">
+                            </td>
+                            <td class="d-none d-xl-table-cell align-middle" 
+                                data-bind="text: Date_end ? (new Date(Date_end).toLocaleString('pt-BR')) : ''">
+                            </td>
+                            <td class="align-middle" data-bind="text: Title"></td>
+                            <td class="align-middle" data-bind="text: City"></td>
+                            <td class="align-middle">
+                                <a class="nav-link text-decoration-none text-primary" 
+                                   data-bind="text: Title, attr: { href: Url }" 
+                                   title="Show Details">
+                                </a>
+                            </td>
+                            <td class="align-middle" data-bind="text: Stage_number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </main>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
