@@ -93,101 +93,62 @@
                 </div>
             </div>
         </nav>
-        <div class="container mt-3 pt-5">
-            <!-- Return Button -->
-            
-        
-            <!-- Main NOC Details -->
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm p-3">
-                        <div class="row">
-                            <!-- NOC Image and Name -->
-                            <div class="col-md-4 text-center">
-                                <img class="img-fluid rounded border" 
-                                     data-bind="attr: { src: noc().Photo || '../Images/PersonNotFound.png', alt: noc().Name }" 
-                                     style="max-height: 200px; border-width: 2px;" />
-                                <h5 class="mt-3" data-bind="text: noc().Name"></h5>
-                                <p data-bind="if: noc().Note"><strong>Note:</strong> <span data-bind="text: noc().Note"></span></p>
-                                <a class="btn btn-primary mt-2" data-bind="attr: { href: noc().Url, target: '_blank' }">Visit NOC Website</a>
-                            </div>
-        
-                            <!-- NOC Information -->
-                            <div class="col-md-8">
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item"><strong>Country ID:</strong> <span data-bind="text: noc().Id"></span></li>
-                                    <li class="list-group-item"><strong>Name:</strong> <span data-bind="text: noc().Name"></span></li>
-                                    <li class="list-group-item"><strong>Note:</strong> <span data-bind="text: noc().Note || 'N/A'"></span></li>
-                                </ul>
+    <div class="container mt-3 pt-5">
+        <div class="row" data-bind="foreach: athlete">
+            <div class="col-12 mb-4">
+                <div class="card shadow-sm p-3">
+                    <div class="row">
+                        <!-- Imagem do atleta com borda -->
+                        <div class="col-md-4 text-center">
+                            <img class="img-fluid rounded border" 
+                                 data-bind="attr: { src: Photo, alt: Name }" 
+                                 style="max-height: 200px; border-width: 2px;" />
+                            <h5 class="mt-3" data-bind="text: Name"></h5>
+                        </div>
+                        <!-- Informações gerais -->
+                        <div class="col-md-8">
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate ? BirthDate.split('T')[0] : ''"></span></li>                   
+                                <li class="list-group-item"><strong>Birth Place:</strong> <span data-bind="text: BirthPlace"></span></li>
+                                <li class="list-group-item"><strong>Sex:</strong> <span data-bind="text: Sex"></span></li>
+                                <li class="list-group-item"><strong>Height:</strong> <span data-bind="text: Height"></span></li>
+                                <li class="list-group-item"><strong>Weight:</strong> <span data-bind="text: Weight"></span></li>
+                                <li class="list-group-item"><strong>Country:</strong> <span data-bind="text: Country"></span></li>
+                            </ul>
+                            <!-- Sports Achievements -->
+                            <h5>Sports Achievements</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Sporting Relatives:</strong> <span data-bind="text: SportingRelatives"></span></li>
+                                <li class="list-group-item"><strong>Other Sports:</strong> <span data-bind="text: OtherSports"></span></li>
                                 <!-- Medals -->
-                                <h5>Medals</h5>
-                                <ul class="list-group" data-bind="foreach: noc().Medals">
-                                    <li class="list-group-item">
-                                        <span data-bind="text: Type"></span>
-                                    </li>
-                                </ul>
-                                <p data-bind="ifnot: noc().Medals.length">No medals awarded to this NOC.</p>
-                            </div>
+                                <li class="list-group-item">
+                                    <strong>Medals:</strong>
+                                    <ul class="list-group" data-bind="foreach: Medals">
+                                        <li class="list-group-item">
+                                            <span data-bind="text: Medal_Type"></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Competitions -->
+                                <li class="list-group-item">
+                                    <strong>Competitions:</strong>
+                                    <ul class="list-group" data-bind="foreach: Competitions">
+                                        <li class="list-group-item">
+                                            <span data-bind="text: Tag"></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        
-            <!-- Athletes Section -->
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm p-3">
-                        <h5 class="mb-3">Athletes</h5>
-                        <ul class="list-group" data-bind="foreach: noc().Athletes">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span data-bind="text: Name"></span>
-                                <span class="badge badge-primary badge-pill" data-bind="text: Id"></span>
-                            </li>
-                        </ul>
-                        <p data-bind="ifnot: noc().Athletes.length" class="text-center mt-2">No athletes associated with this NOC.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Coaches Section -->
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm p-3">
-                        <h5 class="mb-3">Coaches</h5>
-                        <ul class="list-group" data-bind="foreach: noc().Coaches">
-                            <li class="list-group-item">
-                                <span data-bind="text: Name"></span>
-                            </li>
-                        </ul>
-                        <p data-bind="ifnot: noc().Coaches.length" class="text-center mt-2">No coaches associated with this NOC.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Teams Section -->
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm p-3">
-                        <h5 class="mb-3">Teams</h5>
-                        <ul class="list-group" data-bind="foreach: noc().Teams">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span data-bind="text: Name"></span>
-                                <span class="badge badge-primary badge-pill" data-bind="text: Id"></span>
-                            </li>
-                        </ul>
-                        <p data-bind="ifnot: noc().Teams.length" class="text-center mt-2">No teams associated with this NOC.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary" onclick="window.location.href='nocs-list.html';">
-                    Back to NOCs
-                </button>
-            </div>
-        </div>
-
-        
-               
+        </div> 
+        <div class="mb-3">
+            <button class="btn btn-primary" onclick="window.location.href='athletes.html';">
+                Back to Athletes
+            </button>
+    </div>       
 </main>
     <footer class="sporty-footer py-4">
         <div class="container-lg">
