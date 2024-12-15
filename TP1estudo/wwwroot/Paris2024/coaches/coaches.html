@@ -142,13 +142,13 @@
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: coaches">
-                    <tr class="clickable-row" data-bind="click: function() { window.location.href = './coaches.html?id=' + Id }" style="cursor: pointer;">
+                    <tr class="clickable-row" data-bind="click: function() { window.location.href = './coach-detail.html?id=' + Id }" style="cursor: pointer;">
                         <td class="align-middle" data-bind="text: Id"></td>
                         <td class="align-middle" data-bind="text: Name"></td>
                         <td class="align-middle" data-bind="text: Sex"></td>
                         <td class="align-middle text-center"></td>
                         <td class="align-middle text-end">
-                            <a data-bind="attr: { href: './coaches.html?id=' + Id }" 
+                            <a data-bind="attr: { href: './coach-detail.html?id=' + Id }" 
                                class="btn btn-sm btn-outline-primary" 
                                title="View Details">
                                 <i class="fa fa-eye"></i> View

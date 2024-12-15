@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Athlete Detail</title>
+    <title>Coach Detail</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -95,7 +95,7 @@
         </nav>
     <div class="container mt-3 pt-5">
         <div class="mb-3">
-            <button class="btn btn-primary" onclick="window.location.href='athletes.html';">
+            <button class="btn btn-primary" onclick="window.location.href='coaches.html';">
                 Volte para a Página Principal
             </button>
         </div>
@@ -113,35 +113,15 @@
                         <!-- Informações gerais -->
                         <div class="col-md-8">
                             <ul class="list-group mb-3">
-                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate ? BirthDate.split('T')[0] : ''"></span></li>                   
-                                <li class="list-group-item"><strong>Birth Place:</strong> <span data-bind="text: BirthPlace"></span></li>
+                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate ? BirthDate.split('T')[0] : ''"></span></li>
                                 <li class="list-group-item"><strong>Sex:</strong> <span data-bind="text: Sex"></span></li>
-                                <li class="list-group-item"><strong>Height:</strong> <span data-bind="text: Height"></span></li>
-                                <li class="list-group-item"><strong>Weight:</strong> <span data-bind="text: Weight"></span></li>
                                 <li class="list-group-item"><strong>Country:</strong> <span data-bind="text: Country"></span></li>
                             </ul>
                             <!-- Sports Achievements -->
                             <h5>Sports Achievements</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>Sporting Relatives:</strong> <span data-bind="text: SportingRelatives"></span></li>
-                                <li class="list-group-item"><strong>Other Sports:</strong> <span data-bind="text: OtherSports"></span></li>
-                                <!-- Medals -->
+                            <ul class="list-group" data-bind="foreach: Sports">
                                 <li class="list-group-item">
-                                    <strong>Medals:</strong>
-                                    <ul class="list-group" data-bind="foreach: Medals">
-                                        <li class="list-group-item">
-                                            <span data-bind="text: Medal_Type"></span>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!-- Competitions -->
-                                <li class="list-group-item">
-                                    <strong>Competitions:</strong>
-                                    <ul class="list-group" data-bind="foreach: Competitions">
-                                        <li class="list-group-item">
-                                            <span data-bind="text: Tag"></span>
-                                        </li>
-                                    </ul>
+                                    <strong>Competition:</strong> <span data-bind="text: Name"></span>
                                 </li>
                             </ul>
                         </div>
@@ -184,7 +164,7 @@
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="athlete-detail.js"></script>
+    <script src="coach-detail.js"></script>
     <script src="../theme.js"></script>
 </body>
 </html>
