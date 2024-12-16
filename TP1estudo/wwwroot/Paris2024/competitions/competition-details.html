@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -34,7 +33,7 @@
                                 <li><a class="dropdown-item" href="../referees/referees.html"><i class="fa fa-user-o text-info"></i> Referees</a></li>
                                 <li><hr class="dropdown-divider"></li> <!-- Divider -->
                                 <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                                <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> NOCs</a></li>
+                                <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> Comités</a></li>
                                 <li><hr class="dropdown-divider"></li> <!-- Divider -->
                                 <li><a class="dropdown-item" href="../countrymedals/countrymedals.html"><i class="fa fa-flag text-primary"></i> Medals By Country</a></li>
                                 <li><a class="dropdown-item" href="../medals/medals.html"><i class="fa fa-user text-info"></i> Medals By Athlete</a></li>
@@ -56,7 +55,6 @@
                                 <i class="fa-solid fa-person-running"></i> Games
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
-                                <li><a class="dropdown-item" href="../sports/sports.html"><i class="fa-solid fa-football text-info"></i> Sports</a></li>
                                 <li><a class="dropdown-item" href="../competitions/competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
                                 <li><a class="dropdown-item" href="../desportos/basketballs.html"><i class="fa fa-basketball-ball text-danger"></i> Basketball</a></li>
                             </ul>
@@ -92,99 +90,85 @@
                     </li>
                 </div>
             </div>
-        </nav>
-    <div class="container mt-3 pt-5">
-        <div class="mb-3">
-            <button class="btn btn-primary" onclick="window.location.href='athletes.html';">
-                Volte para a Página Principal
-            </button>
-        </div>
-        <div class="row" data-bind="foreach: athlete">
-            <div class="col-12 mb-4">
-                <div class="card shadow-sm p-3">
-                    <div class="row">
-                        <!-- Imagem do atleta com borda -->
-                        <div class="col-md-4 text-center">
-                            <img class="img-fluid rounded border" 
-                                 data-bind="attr: { src: Photo, alt: Name }" 
-                                 style="max-height: 200px; border-width: 2px;" />
-                            <h5 class="mt-3" data-bind="text: Name"></h5>
-                        </div>
-                        <!-- Informações gerais -->
-                        <div class="col-md-8">
-                            <ul class="list-group mb-3">
-                                <li class="list-group-item"><strong>Birth Date:</strong> <span data-bind="text: BirthDate ? BirthDate.split('T')[0] : ''"></span></li>                   
-                                <li class="list-group-item"><strong>Birth Place:</strong> <span data-bind="text: BirthPlace"></span></li>
-                                <li class="list-group-item"><strong>Sex:</strong> <span data-bind="text: Sex"></span></li>
-                                <li class="list-group-item"><strong>Height:</strong> <span data-bind="text: Height"></span></li>
-                                <li class="list-group-item"><strong>Weight:</strong> <span data-bind="text: Weight"></span></li>
-                                <li class="list-group-item"><strong>Country:</strong> <span data-bind="text: Country"></span></li>
-                            </ul>
-                            <!-- Sports Achievements -->
-                            <h5>Sports Achievements</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>Sporting Relatives:</strong> <span data-bind="text: SportingRelatives"></span></li>
-                                <li class="list-group-item"><strong>Other Sports:</strong> <span data-bind="text: OtherSports"></span></li>
-                                <!-- Medals -->
-                                <li class="list-group-item">
-                                    <strong>Medals:</strong>
-                                    <ul class="list-group" data-bind="foreach: Medals">
-                                        <li class="list-group-item">
-                                            <span data-bind="text: Medal_Type"></span>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!-- Competitions -->
-                                <li class="list-group-item">
-                                    <strong>Competitions:</strong>
-                                    <ul class="list-group" data-bind="foreach: Competitions">
-                                        <li class="list-group-item">
-                                            <span data-bind="text: Tag"></span>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+        </nav> 
+        <div class="container mt-4" data-bind="foreach: info">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card shadow-sm p-3">
+                        <div class="row">
+                            <!-- Imagem do atleta com borda e centralização -->
+                            <div class="col-md-4 text-center">
+                                <h5 class="mt-3" data-bind="text: Name"></h5>
+                            </div>
+                            <!-- Informações gerais -->
+                            <div class="col-md-8">
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item"><strong>Sport id:</strong> <span data-bind="text: SportId"></span></li>
+                                    <li class="list-group-item"><strong>Sport Name:</strong> <span data-bind="text: Tag"></span></li>
+                                </ul>
+                                <!-- Sports Achievements -->
+                                <h5>Sports Information</h5>
+                                <ul class="list-group">
+                                    <!-- Medals -->
+                                    <li class="list-group-item">
+                                        <strong>Athletes:</strong>
+                                        <!-- Mostrar lista de atletas se houver -->
+                                        <ul class="list-group" data-bind="if: Athletes.length">
+                                            <li class="list-group-item" data-bind="foreach: Athletes">
+                                                <span data-bind="text: Name"></span><br>
+                                            </li>
+                                        </ul>
+                                        <!-- Mostrar mensagem se não houver atletas -->
+                                        <p class="mt-2" data-bind="ifnot: Athletes.length">No athletes available.</p>
+                                    </li>                   
+                                </ul>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>   
+            <!-- Botão voltar -->
+            <div class="d-flex justify-content-start mt-4 mb-4">
+                <div class="col-auto">
+                    <button class="btn btn-secondary" onclick="window.history.back();">Voltar</button>
                 </div>
             </div>
         </div>        
-</main>
-    <footer class="sporty-footer py-4">
-        <div class="container-lg">
-            <div class="row text-center text-md-start">
-                <!-- Social Links -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-uppercase">Follow Us</h5>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/olympics/" class="text-light me-3"><i class="fa fa-facebook"></i></a>
-                        <a href="https://x.com/Olympics" class="text-light me-3"><i class="fa fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/ olympics" class="text-light me-3"><i class="fa fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/Olympics" class="text-light"><i class="fa fa-youtube"></i></a>
+    </main>
+        <footer class="sporty-footer py-4">
+            <div class="container-lg">
+                <div class="row text-center text-md-start">
+                    <!-- Social Links -->
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-uppercase">Follow Us</h5>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/olympics/" class="text-light me-3"><i class="fa fa-facebook"></i></a>
+                            <a href="https://x.com/Olympics" class="text-light me-3"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/ olympics" class="text-light me-3"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/Olympics" class="text-light"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <!-- Quick Links -->
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-uppercase">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="../index.html" class="text-light">Home</a></li>
+                            <li><a href="../torch/torch.html" class="text-light">Torch Route</a></li>
+                            <li><a href="https://olympics.com/en/paris-2024" class="text-light">Official Paris 2024 Olympics Website</a></li>
+                        </ul>
+                    </div>
+                    <!-- About -->
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-uppercase">About</h5>
+                        <p class="small">Paris 2024 - A celebration of unity through sports. Join us on the journey to the Olympic games.</p>
+                        <p class="small">&copy; 2024 Paris 2024. All Rights Reserved.</p>
                     </div>
                 </div>
-                <!-- Quick Links -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-uppercase">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-light">Home</a></li>
-                        <li><a href="../torch/torch.html" class="text-light">Torch Route</a></li>
-                        <li><a href="https://olympics.com/en/paris-2024" class="text-light">Official Paris 2024 Olympics Website</a></li>
-                    </ul>
-                </div>
-                <!-- About -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-uppercase">About</h5>
-                    <p class="small">Paris 2024 - A celebration of unity through sports. Join us on the journey to the Olympic games.</p>
-                    <p class="small">&copy; 2024 Paris 2024. All Rights Reserved.</p>
-                </div>
-            </div>
-        </div>  
-    </footer>
+            </div>  
+        </footer>
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="athlete-detail.js"></script>
-    <script src="../theme.js"></script>
+    <script src="competition-details.js"></script>
 </body>
 </html>

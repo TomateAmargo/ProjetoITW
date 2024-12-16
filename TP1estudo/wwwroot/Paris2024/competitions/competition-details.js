@@ -1,20 +1,30 @@
+
+function openModal() {
+    document.getElementById('gameDetailsModal').style.display = 'block';
+}
+function closeModal() {
+    document.getElementById('gameDetailsModal').style.display = 'none';
+}
+
 var vm = function () {
     console.log('ViewModel initiated...');
     var self = this;
 
     // Observables
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
-    self.displayName = ko.observable('Athlete Detail');
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Competitions');
+    self.displayName = ko.observable('Competitions Match Information');
     self.error = ko.observable('');
-    self.athlete = ko.observable('');
+    self.info = ko.observable('');
 
     // Function to fetch athlete details
-    self.activate = function (id) {
+    self.activate = function (sportid, name) {
         console.log('CALL: getAthlete...');
-        const composedUri = `${self.baseUri()}/${id}`;
+        const composedUri = `${self.baseUri()}?sportid=${sportid}&name=${name}`;
+        console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.athlete(data);
+            self.info(data);
+            console.log(data);
         });
     };
 
@@ -54,11 +64,13 @@ var vm = function () {
 
     // Initialization
     showLoading();
-    const athleteId = getUrlParameter('id');
-    if (athleteId) {
-        self.activate(athleteId);
+    const sportid = getUrlParameter('sportid');
+    const name = getUrlParameter('name');
+    console.log(name);
+    if (sportid && name) {
+        self.activate(sportid, name);
     } else {
-        console.error('Athlete ID not found in URL');
+        console.error('Event ID not found in URL');
         hideLoading();
     }
 };

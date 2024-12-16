@@ -16,7 +16,7 @@ var vm = function () {
             .done(function (data) {
                 console.log('API Response:', data); // Debugging response
                 hideLoading();
-                self.noc(data); // Bind fetched data to `noc`
+                self.noc(data); 
             })
             .fail(function (error) {
                 console.error('Error fetching NOC:', error);

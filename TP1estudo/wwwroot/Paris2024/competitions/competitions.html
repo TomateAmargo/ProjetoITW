@@ -149,14 +149,14 @@
                     <tbody data-bind="foreach: competitions">
                         <tr 
                             class="clickable-row" 
-                            data-bind="click: function() { window.location.href = 'competitions-detail.html?id=' + SportId }" 
+                            data-bind="click: function() { window.location.href = 'competition-details.html?sportid=' + SportId + '&name=' + Name}" 
                             style="cursor: pointer;">
                             <td class="align-middle" data-bind="text: Tag"></td>
                             <td class="align-middle" data-bind="text: Name"></td>
                             <td class="align-middle" data-bind="text: SportId"></td>
                             <td class="align-middle text-center">
                                 <a 
-                                    data-bind="attr: { href: 'competitions-detail.html?id=' + SportId }" 
+                                    data-bind="attr: { href: 'competition-details.html?sportid=' + SportId + '&name=' + Name }" 
                                     class="btn btn-sm btn-outline-primary text-decoration-none">
                                     <i class="fa fa-eye" title="View Details"></i> View
                                 </a>

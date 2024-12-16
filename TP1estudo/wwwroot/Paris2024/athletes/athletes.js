@@ -61,60 +61,91 @@ var vm = function () {
             self.currentLanguage(lang);
         }
     };
-
-    // Map athletes with a favorite property
-    // Filter athletes based on favorites
-self.filterAthletes = function () {
-    const filter = self.favoriteFilter();
-    const athletes = self.athletes();
     
-    // Reset the filtered athletes based on the selected filter
-    if (filter === 'favorites') {
-        // Show only athletes marked as favorite
-        self.filteredAthletes(athletes.filter(a => a.IsFavorite()));
-    } else if (filter === 'non-favorites') {
-        // Show only athletes not marked as favorite
-        self.filteredAthletes(athletes.filter(a => !a.IsFavorite()));
-    } else {
-        // Show all athletes
-        self.filteredAthletes(athletes);
-    }
-};
+    self.favoriteFilter = ko.observable("all"); // Valor inicial do filtro
 
-// Update toggleFavorite to ensure correct reactivity
-self.mapAthletes = function (data) {
-    return data.map(a => ({
-        ...a,
-        IsFavorite: ko.observable(false),
-        toggleFavorite: function () {
-            // Toggle the favorite status
-            this.IsFavorite(!this.IsFavorite());
-
-            // Update the filtered list dynamically
-            self.filterAthletes();
+    // Função para aplicar o filtro de favoritos
+    self.filterAthletes = function () {
+        const filter = self.favoriteFilter(); // Pega o filtro selecionado
+        
+        // A lista de atletas filtrada
+        let filtered = self.athletes();
+        
+        // Aplica o filtro com base na seleção
+        if (filter === "favorites") {
+            filtered = filtered.filter(function (athlete) {
+                return self.favourites().includes(athlete.Id); // Exibe apenas os favoritos
+            });
+        } else if (filter === "non-favorites") {
+            filtered = filtered.filter(function (athlete) {
+                return !self.favourites().includes(athlete.Id); // Exclui os favoritos
+            });
         }
-    }));
-};
-
+        
+        // Atualiza a lista de atletas filtrados
+        self.filteredAthletes(filtered);
+    };
     
-
-    // Função para ativar a página
+    // Função para ativar e carregar atletas
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
         const composedUri = `${self.baseUri()}?page=${id}&pageSize=${self.pagesize()}`;
+        
+        // Chama a função ajaxHelper para buscar os dados dos atletas
         ajaxHelper(composedUri, 'GET').done(function (data) {
-            hideLoading();
-            const athletesWithFavorites = self.mapAthletes(data.Athletes);
-            self.athletes(athletesWithFavorites);
-            self.filteredAthletes(athletesWithFavorites); // Initialize filtered list
+            hideLoading(); // Esconde o indicador de carregamento
+            
+            // Atualiza dados de atletas
+            self.athletes(data.Athletes);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAhletes);
+            self.totalRecords(data.TotalAthletes);
+            self.SetFavourites();
+            self.filterAthletes();
         });
     };
+    
+    // Função para alternar favoritos
+    self.toggleFavourite = function (id) {
+        const favourites = self.favourites(); 
+        const index = favourites.indexOf(id);
+        
+        if (index === -1) {
+            self.favourites.push(id); 
+        } else {
+            self.favourites.splice(index, 1); 
+        }
+    
+        localStorage.setItem("fav", JSON.stringify(self.favourites()));
+    };
+    
+    
+    // Função para carregar os favoritos do localStorage
+    self.SetFavourites = function () {
+        let storage = null;
+        try {
+            storage = JSON.parse(localStorage.getItem("fav"));
+        } catch (e) {
+            console.error("Erro ao carregar favoritos:", e);
+        }
+        
+        if (Array.isArray(storage)) {
+            self.favourites(storage); // Atualiza a lista de favoritos
+        }
+    };
+    
+    // Inicializa a lista de favoritos
+    self.favourites = ko.observableArray([]);
+    
+    // Inicializa o filtro com valor "all"
+    self.favoriteFilter.subscribe(function () {
+        // Sempre que o filtro mudar, aplica a filtragem novamente
+        self.filterAthletes();
+    });
+    self.filteredAthletes = ko.observableArray([]);
 
     // Função AJAX
     function ajaxHelper(uri, method, data) {
