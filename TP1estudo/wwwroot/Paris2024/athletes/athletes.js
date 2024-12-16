@@ -61,7 +61,7 @@ var vm = function () {
             self.currentLanguage(lang);
         }
     };
-    
+
     self.favoriteFilter = ko.observable("all"); // Valor inicial do filtro
 
     // Função para aplicar o filtro de favoritos
@@ -84,8 +84,7 @@ var vm = function () {
         
         // Atualiza a lista de atletas filtrados
         self.filteredAthletes(filtered);
-    };
-    
+    };  
     // Função para ativar e carregar atletas
     self.activate = function (id) {
         console.log('CALL: getAthletes...');

@@ -297,4 +297,18 @@ li.nav-item.dropdown {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
+.btn-link {
+    color: inherit; /* Use parent element's color */
+    text-decoration: none; /* Remove underline */
+}
+.btn-link:hover {
+    color: #ffffff; /* Ensure the hover state is white */
+}
+.btn-link:focus, .btn-link:active {
+    outline: none; /* Remove focus outline */
+    background-color: transparent; /* Ensure no background is applied */
+    box-shadow: none; /* Remove any box shadow */
+}
+li.nav-item.dropdown {
+    list-style-type: none;
+} 
