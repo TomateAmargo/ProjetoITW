@@ -64,14 +64,11 @@ var vm = function () {
 
     self.favoriteFilter = ko.observable("all"); // Valor inicial do filtro
 
-    // Função para aplicar o filtro de favoritos
     self.filterAthletes = function () {
-        const filter = self.favoriteFilter(); // Pega o filtro selecionado
+        const filter = self.favoriteFilter(); 
         
-        // A lista de atletas filtrada
         let filtered = self.athletes();
         
-        // Aplica o filtro com base na seleção
         if (filter === "favorites") {
             filtered = filtered.filter(function (athlete) {
                 return self.favourites().includes(athlete.Id); // Exibe apenas os favoritos
