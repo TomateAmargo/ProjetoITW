@@ -98,7 +98,7 @@ var vm = function () {
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAthletes);
+            self.totalRecords(data.TotalAhletes);
             self.SetFavourites();
             self.filterAthletes();
         });
@@ -188,3 +188,4 @@ $(document).ready(function () {
     console.log("Document ready!");
     ko.applyBindings(new vm());
 });
+
