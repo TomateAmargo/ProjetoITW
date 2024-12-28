@@ -56,7 +56,6 @@ $(document).ready(function () {
     ajaxHelper("http://192.168.160.58/Paris2024/api/Torch_route", "GET").done(function (data) {
         var Url = data.map(item => item.Url);                
         var Coords = data.map(item => [item.Lat, item.Lon]);
-        
 
         var Marker = L.icon({
             iconUrl: '../Images/marker.png',
@@ -96,6 +95,7 @@ $(document).ready(function () {
         ]);
         map.setMinZoom(2);
         map.setMaxZoom(18);
+        
     });
 });
 

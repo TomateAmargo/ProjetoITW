@@ -100,6 +100,14 @@
         <div class="row border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
         </div>
+        <div>
+            <label for="filterFavorites" class="form-label me-2">Filter:</label>
+            <select id="filterFavorites" class="form-select form-select-sm w-auto" data-bind="value: favoriteFilter, event: { change: filterAthletes }">
+                <option value="all">All NOCs</option>
+                <option value="favorites">Only Favorites</option>
+                <option value="non-favorites">Exclude Favorites</option>
+            </select>                
+        </div>
         <!-- ko if:comites().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
@@ -130,7 +138,7 @@
         <!-- /ko -->
 
         <div class="container">
-            <div class="row justify-content-center" data-bind="foreach: comites">
+            <div class="row justify-content-center" data-bind="foreach: filteredAthletes">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2 card cardbig p-3 m-3 text-center">
                     <img class="img-thumbnail img-fluid" data-bind="attr: { src: Photo || '../Images/PersonNotFound.png', alt: 'Foto do comitê' }" style="max-height: 100px; object-fit: contain;" />
                     <p class="mt-2 text-uppercase font-weight-bold text-primary" data-bind="text: Country"></p>
@@ -141,6 +149,9 @@
                         <p>Teams: <span data-bind="text: Teams"></span></p>
                     </div>
                     <a class="btn btn-primary btn-sm mt-2" data-bind="attr: { href:'./nocs-details.html?id=' + Id }">Details</a>
+                    <button class="btn btn-default btn-outline-danger btn-sm btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                        <i data-bind="attr: {'class': $parent.favourites().includes(Id) ? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
+                    </button>
                 </div>
             </div>
         </div>
