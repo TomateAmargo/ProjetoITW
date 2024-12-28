@@ -174,7 +174,7 @@
         
                         <!-- Botões para visualizar mais detalhes e adicionar aos favoritos -->
                         <div class="w-100">
-                            <a class="btn btn-primary btn-sm w-100 mb-2" data-bind="attr: { href:'./athleteDetails.html?id=' + Id }">More details</a>
+                            <a class="btn btn-primary btn-sm w-100 mb-2" data-bind="attr: { href:'./athlete-detail.html?id=' + Id }">More details</a>
                             <button class="btn btn-outline-danger btn-sm w-100" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
                                 <i data-bind="attr: {'class': $parent.favourites().includes(Id) ? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Select to add to favorites"></i>
                             </button>
