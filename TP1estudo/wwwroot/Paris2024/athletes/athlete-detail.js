@@ -18,6 +18,22 @@ var vm = function () {
         });
     };
 
+    // General function to navigate to any given page (NOC, Sport, etc.)
+    self.navigateToPage = function (type, code) {
+        if (type && code) {
+            let url = '';
+            if (type === 'NOC') {
+                url = `../comites/nocs-details.html?id=${code}`;  // Navigate to NOC page
+            } else if (type === 'Sport') {
+                url = `../sports/sports-details.html?id=${code}`;  // Navigate to Sport page
+            }
+
+            if (url) {
+                window.location.href = url;  // Redirect to the constructed URL
+            }
+        }
+    };
+
     // AJAX helper
     function ajaxHelper(uri, method, data) {
         self.error('');

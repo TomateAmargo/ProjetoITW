@@ -113,7 +113,10 @@
                                 <li class="list-group-item"><strong>Sex:</strong> <span data-bind="text: Sex"></span></li>
                                 <li class="list-group-item"><strong>Height:</strong> <span data-bind="text: Height"></span></li>
                                 <li class="list-group-item"><strong>Weight:</strong> <span data-bind="text: Weight"></span></li>
-                                <li class="list-group-item"><strong>Country:</strong> <span data-bind="text: Country"></span></li>
+                                <li class="list-group-item">
+                                    <strong>Country:</strong>
+                                    <span data-bind="text: Country, click: $root.navigateToNOCPage"></span>
+                                </li>
                             </ul>
                             <!-- Sports Achievements -->
                             <h5>Sports Achievements</h5>
@@ -131,10 +134,10 @@
                                 </li>
                                 <!-- Competitions -->
                                 <li class="list-group-item">
-                                    <strong>Competitions:</strong>
-                                    <ul class="list-group" data-bind="foreach: Competitions">
+                                    <strong>Sports:</strong>
+                                    <ul class="list-group" data-bind="foreach: Sports">
                                         <li class="list-group-item">
-                                            <span data-bind="text: Tag"></span>
+                                            <span data-bind="text: Name, click: function() { $root.navigateToPage('Sport', $data.Id) }"></span>
                                         </li>
                                     </ul>
                                 </li>
