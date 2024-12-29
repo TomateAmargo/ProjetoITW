@@ -7,17 +7,36 @@ var vm = function () {
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/CountryMedals');
     self.displayName = 'Paris2024 CountryMedals List';
     self.error = ko.observable('');
-    self.countrymedal = ko.observableArray(''); 
+    self.countrymedal = ko.observableArray('');
+    self.pagesize = ko.observable(20);
+
+    self.TotalChange = function (order) {
+        // Alterna entre 3 e 4
+        if (order != 3 ) {
+            return 3
+        } else {
+            return 4
+        }
+    };
+
+    self.NameChange = function (order) {
+        // Alterna entre 3 e 4
+        if (order != 1 ) {
+            return 1
+        } else {
+            return 2
+        }
+    };
 
     // Função para ativar a página
-    self.activate = function () {
+    self.activate = function (id, order) {
         console.log('CALL: getMedals...');
-        const composedUri = self.baseUri();
+        const composedUri = `${self.baseUri()}?page=${id}&pagesize=${self.pagesize()}&Order=${order}`;
         showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading(); 
             console.log(data);
-            self.countrymedal(data)
+            self.countrymedal(data);
         });
     };
 
@@ -48,16 +67,18 @@ var vm = function () {
             $("#myModal").modal('hide');
         })
     }
-
+    
     // Função para obter parâmetros da URL
-    function getUrlParameter(sParam) {
+    self.getUrlParameter = function (sParam) {
         const params = new URLSearchParams(window.location.search);
         return params.get(sParam);
     }
 
     // Inicialização
+    const getid = self.getUrlParameter('page') || 1;
+    const getorder = self.getUrlParameter('order') || 4;
     showLoading();
-    self.activate();
+    self.activate(getid, getorder);
     console.log("VM initialized!");
 };
 

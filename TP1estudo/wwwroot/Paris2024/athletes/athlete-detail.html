@@ -101,7 +101,7 @@
                         <!-- Imagem do atleta com borda -->
                         <div class="col-md-4 text-center">
                             <img class="img-fluid rounded border" 
-                                 data-bind="attr: { src: Photo, alt: Name }" 
+                                 data-bind="attr: { src: Photo || '../Images/PersonNotFound.png', alt: Name }" 
                                  style="max-height: 200px; border-width: 2px;" />
                             <h5 class="mt-3" data-bind="text: Name"></h5>
                         </div>

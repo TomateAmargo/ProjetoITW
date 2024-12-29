@@ -102,6 +102,14 @@
             <div class="col-6" id="cover">
             </div>
         </div>
+        <div>
+            <label for="filterFavorites" class="form-label me-2">Filter:</label>
+            <select id="filterFavorites" class="form-select form-select-sm w-auto" data-bind="value: favoriteFilter, event: { change: filterAthletes }">
+                <option value="all">All Teams</option>
+                <option value="favorites">Only Favorites</option>
+                <option value="non-favorites">Exclude Favorites</option>
+            </select>                
+        </div>
     
         <!-- ko if:records().length > 0 -->
         <div class="row small">
@@ -136,12 +144,19 @@
                         <th scope="col">Name</th>
                         <th scope="col">Country</th>
                         <th scope="col" class="text-right"></th>
+                        <th scope="col" class="text-right"></th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: records">
+                <tbody data-bind="foreach: filteredAthletes">
                     <tr>
                         <td class="align-middle" data-bind="text: Name"></td>
                         <td class="align-middle" data-bind="text: Country"></td>
+                        <td class="align-middle text-center">
+                            <!-- Prevent event bubbling and toggle favorite -->
+                            <button class="btn btn-default btn-outline-danger btn-sm btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                                <i data-bind="attr: {'class': $parent.favourites().includes(Id) ? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
+                            </button>
+                        </td>     
                         <td class="align-middle text-end">
                             <a data-bind="attr: { href: './team-detail.html?id=' + Id }"
                                class="btn btn-sm btn-outline-primary"
