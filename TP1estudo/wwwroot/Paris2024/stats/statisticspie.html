@@ -1,17 +1,21 @@
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Athlete Detail</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/337969d222.js" crossorigin="anonymous"></script>
-    <link href="../StyleSheet.css" rel="stylesheet" />
-</head>
-<body class="d-flex flex-column min-vh-100">
-    <main class="flex-grow-1">
+<DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ITW 2024/25 - Paris 2024 Pie Charts</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+        <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/337969d222.js" crossorigin="anonymous"></script>
+        <link href="../StyleSheet.css" rel="stylesheet" />  
+    </head>
+
+    <body class="d-flex flex-column min-vh-100">
+        <main class="flex-grow-1">
         <nav class="navbar navbar-expand-lg fixed-top sporty-navbar">
             <div class="container-lg">
                 <a class="navbar-brand" href="../index.html" title="Paris 2024">
@@ -33,7 +37,7 @@
                                 <li><a class="dropdown-item" href="../referees/referees.html"><i class="fa fa-user-o text-info"></i> Referees</a></li>
                                 <li><hr class="dropdown-divider"></li> <!-- Divider -->
                                 <li><a class="dropdown-item" href="../teams/teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                                <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> Comités</a></li>
+                                <li><a class="dropdown-item" href="../comites/comites.html"><i class="fa fa-globe text-success"></i> NOCs</a></li>
                                 <li><hr class="dropdown-divider"></li> <!-- Divider -->
                                 <li><a class="dropdown-item" href="../countrymedals/countrymedals.html"><i class="fa fa-flag text-primary"></i> Medals By Country</a></li>
                                 <li><a class="dropdown-item" href="../medals/medals.html"><i class="fa fa-user text-info"></i> Medals By Athlete</a></li>
@@ -56,7 +60,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
                                 <li><a class="dropdown-item" href="../sports/sports.html"><i class="fa-solid fa-football text-info"></i> Sports</a></li>
-                                <li><a class="dropdown-item" href="competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                                <li><a class="dropdown-item" href="../competitions/competitions.html"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="../desportos/athletics.html"><i class="fa fa-running text-success"></i> Athletics</a></li>
                                 <li><a class="dropdown-item" href="../desportos/basketballs.html"><i class="fa fa-basketball-ball text-danger"></i> Basketballs</a></li>
@@ -102,69 +106,59 @@
                     </li>
                 </div>
             </div>
-        </nav> 
-        <div class="container mt-4" data-bind="foreach: info">
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm p-3">
-                        <div class="row">
-                            <!-- Imagem do atleta com borda e centralização -->
-                            <div class="col-md-4 text-center">
-                                <h5 class="mt-3" data-bind="text: Name"></h5>
-                            </div>
-                            <!-- Informações gerais -->
-                            <div class="col-md-8">
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item">
-                                        <strong>Sport id:</strong> 
-                                        <span data-bind="text: SportId"></span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <strong>Sport Name:</strong> 
-                                        <span data-bind="text: Tag"></span>
-                                    </li>
-                                </ul>
-                            
-                                <!-- Sports Achievements -->
-                                <h5>Sports Information</h5>
-                                <ul class="list-group">
-                                    <!-- Athletes Section -->
-                                    <li class="list-group-item">
-                                        <strong>Athletes:</strong>
-                                        <button class="btn btn-link text-decoration-none" 
-                                                data-bs-toggle="collapse" 
-                                                data-bs-target="#athletesList" 
-                                                aria-expanded="false" 
-                                                aria-controls="athletesList">
-                                            Show/Hide Athletes
-                                        </button>
-                                        <!-- Collapsible Athlete List -->
-                                        <div id="athletesList" class="collapse mt-2">
-                                            <ul class="list-group" data-bind="if: Athletes.length">
-                                                <li class="list-group-item" data-bind="foreach: Athletes">
-                                                    <span data-bind="text: Name"></span><br>
-                                                </li>
-                                            </ul>
-                                            <p class="mt-2" data-bind="ifnot: Athletes.length">
-                                                No athletes available.
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                        </div>
+        </nav>   
+        <!-- Working Area -->
+        <div class="container">
+            <div class="border-bottom py-2 mb-2">
+                <h2 data-bind="text:displayName"></h2>
+            </div>
+            <div class="row align-items-center mb-3">
+                <!-- Filtros -->
+                <div class="col-md-6 d-flex justify-content-start align-items-center">
+                    <span>Type:</span>
+                    <div class="form-check form-check-inline ms-2">
+                        <input class="form-check-input" type="radio" name="order" id="rad1" value="1"
+                            data-bind="checked: tipograph, event: { change: function() { activate(); } }">
+                        <label class="form-check-label" for="rad1">Athletes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="order" id="rad2" value="2"
+                            data-bind="checked: tipograph, event: { change: function() { activate(); } }">
+                        <label class="form-check-label" for="rad2">Coaches</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="order" id="rad3" value="3"
+                            data-bind="checked: tipograph, event: { change: function() { activate(); } }">
+                        <label class="form-check-label" for="rad3">Teams</label>
                     </div>
                 </div>
-            </div>   
-            <!-- Botão voltar -->
-            <div class="d-flex justify-content-start mt-4 mb-4">
-                <div class="col-auto">
-                    <button class="btn btn-secondary" onclick="window.history.back();">Voltar</button>
+            </div>
+            <!-- ko if:tipograph() == 1 || tipograph() == 2 || tipograph() == 3-->
+            <div class="row small d-flex justify-content-center">
+                <div class="col-md-8 col-12 my-0 pt-3">
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
                 </div>
             </div>
-        </div>        
-    </main>
+            <!-- /ko -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <img src="Images/Paris2024.png" height="30" /> Loading data...
+                        </h5>
+                    </div>
+                    <div class="modal-body text-center">
+                        <i class="fa fa-spin fa-3x fa-refresh"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+        <!-- End of Working Area -->
         <footer class="sporty-footer py-4">
             <div class="container-lg">
                 <div class="row text-center text-md-start">
@@ -182,8 +176,8 @@
                     <div class="col-md-4 mb-3">
                         <h5 class="text-uppercase">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="../index.html" class="text-light">Home</a></li>
-                            <li><a href="../torch/torch.html" class="text-light">Torch Route</a></li>
+                            <li><a href="./index.html" class="text-light">Home</a></li>
+                            <li><a href="./torch/torch.html" class="text-light">Torch Route</a></li>
                             <li><a href="https://olympics.com/en/paris-2024" class="text-light">Official Paris 2024 Olympics Website</a></li>
                         </ul>
                     </div>
@@ -196,9 +190,14 @@
                 </div>
             </div>  
         </footer>
-    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="competition-details.js"></script>
-</body>
-</html>
+
+        <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+        <script src="../lib/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="statisticspie.js"></script>
+        <script src="../theme.js"></script>
+    </body>
+
+    </html>

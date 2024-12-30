@@ -167,8 +167,11 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2 card cardbig p-3 m-3 text-center">
                     <div class="d-flex flex-column align-items-center">
                         <!-- Imagem do atleta -->
-                        <img class="img-thumbnail img-fluid" style="height: 175px; width: 175px; object-fit: cover; background-color:rgba(0, 0, 255, 0.165);" 
-                            data-bind="attr: { src: Photo || '../Images/PersonNotFound.png' }">
+                        <img class="img-thumbnail img-fluid" 
+                            style="height: 175px; width: 175px; object-fit: cover; background-color:rgba(0, 0, 255, 0.165);" 
+                            data-bind="attr: {src: Photo && Photo.trim() ? Photo : '../Images/PersonNotFound.png' }" 
+                            onerror="this.src='../Images/PersonNotFound.png';">
+
                         
                         <!-- Nome do atleta -->
                         <p data-bind="text: Name"></p>

@@ -115,10 +115,12 @@
                 <div class="card shadow-sm p-3">
                     <div class="row">
                         <!-- Imagem do atleta com borda -->
-                        <div class="col-md-4 text-center">
-                            <img class="img-fluid rounded border" 
-                                 data-bind="attr: { src: Photo, alt: Name }" 
-                                 style="max-height: 200px; border-width: 2px;" />
+                            <div class="col-md-4 text-center">
+                                <img class="img-thumbnail img-fluid" 
+                                style="object-fit: cover;" 
+                                data-bind="attr: {src: Photo && Photo.trim() ? Photo : '../Images/PersonNotFound.png' }" 
+                                onerror="this.src='../Images/PersonNotFound.png';">
+                           
                             <h5 class="mt-3" data-bind="text: Name"></h5>
                         </div>
                         <!-- Informações gerais -->

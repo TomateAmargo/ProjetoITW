@@ -151,7 +151,11 @@
         <div class="container">
             <div class="row justify-content-center" data-bind="foreach: filteredAthletes">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2 card cardbig p-3 m-3 text-center">
-                    <img class="img-thumbnail img-fluid" data-bind="attr: { src: Photo || '../Images/PersonNotFound.png', alt: 'Foto do comitê' }" style="max-height: 100px; object-fit: contain;" />
+                        <img class="img-thumbnail img-fluid" 
+                        style="object-fit: cover;" 
+                        data-bind="attr: {src: Photo && Photo.trim() ? Photo : '../Images/PersonNotFound.png' }" 
+                        onerror="this.src='../Images/PersonNotFound.png';">
+                   
                     <p class="mt-2 text-uppercase font-weight-bold text-primary" data-bind="text: Country"></p>
                     <div class="text-muted small" style="line-height: 1.2;">
                         <p>Athletes: <span data-bind="text: Athletes"></span></p>
@@ -161,6 +165,7 @@
                     </div>
                     <a class="btn btn-primary btn-sm mt-2" data-bind="attr: { href:'./nocs-details.html?id=' + Id }">Details</a>
                     <button class="btn btn-default btn-outline-danger btn-sm btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+
                         <i data-bind="attr: {'class': $parent.favourites().includes(Id) ? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                     </button>
                 </div>

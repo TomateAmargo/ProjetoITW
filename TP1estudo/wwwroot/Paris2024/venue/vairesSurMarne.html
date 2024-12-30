@@ -130,19 +130,13 @@
                     <td class="align-middle" data-bind="text: DateStart ? (new Date(DateStart).toLocaleString('pt-BR')) : ''"></td>
                     <td class="align-middle" data-bind="text: DateEnd ? (new Date(DateEnd).toLocaleString('pt-BR')) : ''"></td>
                     <td class="align-middle" data-bind="text:NumSports"></td>
-                    <td class="text-end">
-                        <a class="btn btn-sm btn-outline-primary" 
-                           data-bind="attr: { href: './athleteDetails.html?id=' + Id }">
-                            <i class="fa fa-eye" title="Show details"></i> View
-                        </a>
-                    </td>
+                    <td class="text-end"></td>
                 </tr>
             </tbody>
         </table>
     </div>
     </div>
     
-    <!-- Ajuste o botão para que ele fique centralizado -->
     <div class="container text-center mb-3">
         <button class="btn btn-primary" onclick="window.location.href='venue.html';">
             Volte para a Página Principal

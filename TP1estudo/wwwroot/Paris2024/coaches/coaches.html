@@ -109,7 +109,12 @@
     <!-- Working Area -->
     <div class="container my-xs-4m mt-4">
         <div class="row border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+            <h2 class="col-6" data-bind="text: displayName"></h2>
+            <div class="col-6" id="cover">
+                <div class="row" style="justify-content:end">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:35%" id="procura" name="procura" autocomplete="off">
+                </div>
+            </div>
         </div>
             <!-- Filter Dropdown -->
             <div>
