@@ -70,6 +70,16 @@
                             </ul> 
                         </li>
                     </ul>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-chart-simple"></i> Statistics
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+                            <li><a class="dropdown-item" href="statisticsmaps.html"><i class="fa-solid fa-map text-warning"></i> Statistics Maps</a></li>
+                            <li><a class="dropdown-item" href="statisticspie.html"><i class="fa-solid fa-chart-pie text-danger"></i></i> Statistics Pie</a></li>
+                        </ul>
+                    </li>
     
                     <!-- Settings Menu -->
                     <li class="nav-item dropdown">
@@ -133,7 +143,7 @@
                 </div>
             </div>
             <!-- ko if:tipograph() == 1 || tipograph() == 2 || tipograph() == 3-->
-            <div class="row small d-flex justify-content-center">
+            <div class="row small d-flex justify-content-center" style="padding-bottom: 50px;">
                 <div class="col-md-8 col-12 my-0 pt-3">
                     <div id="regions_div" style="width: 900px; height: 500px;"></div>
                 </div>

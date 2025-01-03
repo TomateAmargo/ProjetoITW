@@ -70,6 +70,16 @@
                     </li>
                 </ul>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-chart-simple"></i> Statistics
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+                        <li><a class="dropdown-item" href="../stats/statisticsmaps.html"><i class="fa-solid fa-map text-warning"></i> Statistics Maps</a></li>
+                        <li><a class="dropdown-item" href="../stats/statisticsmaps.html"><i class="fa-solid fa-chart-pie text-danger"></i></i> Statistics Pie</a></li>
+                    </ul>
+                </li>
+
                 <!-- Settings Menu -->
                 <li class="nav-item dropdown">
                     <button class="btn btn-link dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -109,8 +119,14 @@
     <!-- Working Area -->
     <div class="container my-xs-4m mt-4">
         <div class="row border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+            <h2 class="col-6" data-bind="text: displayName"></h2>
+            <div class="col-6" id="cover">
+                <div class="row" style="justify-content:end">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:35%" id="procura" name="procura" autocomplete="off">
+                </div>
+            </div>
         </div>
+
         <div>
             <label for="filterFavorites" class="form-label me-2">Filter:</label>
             <select id="filterFavorites" class="form-select form-select-sm w-auto" data-bind="value: favoriteFilter, event: { change: filterAthletes }">
@@ -226,5 +242,56 @@
     <script src="../lib/jquery/dist/jquery.min.js"></script>
     <script src="comites.js"></script>
     <script src="../theme.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+    const api_url = "http://192.168.160.58/Paris2024/api/NOCS/Search";
+
+    $("#procura").autocomplete({
+        minLength: 2, // Minimum length of input before triggering API call
+        source: function (request, response) {
+            $.ajax({
+                type: "GET",
+                url: api_url,
+                data: {
+                    q: request.term // Pass the search term directly
+                },
+                success: function (data) {
+                    // Ensure the response is valid and is an array
+                    if (Array.isArray(data) && data.length > 0) {
+                        const results = data.slice(0, 10).map(coach => ({
+                            label: coach.Name, // Display coach's name
+                            value: coach.Id    // Store the coach's ID for selection
+                        }));
+                        response(results); // Pass results to the autocomplete
+                    } else {
+                        response([{ label: 'No results found', value: '' }]); // No matches
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error fetching coaches:", textStatus, errorThrown);
+                    alert("An error occurred while fetching coaches. Please try again later.");
+                }
+            });
+        },
+        select: function (event, ui) {
+            event.preventDefault();
+            if (ui.item.value) {
+                // Redirect to the selected coach's detail page
+                window.location.href = "./nocs-details.html?id=" + ui.item.value;
+            } else {
+                $("#procura").val(ui.item.label); // Display 'No results found'
+            }
+        },
+        focus: function (event, ui) {
+            event.preventDefault();
+            $("#procura").val(ui.item.label); // Focus on the current option
+        }
+    });
+});
+
+    </script>
 </body>
 </html>
